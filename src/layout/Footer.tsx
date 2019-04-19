@@ -1,12 +1,47 @@
 import { Component } from "react";
 import React from "react";
 
-export default class Footer extends Component {
+/* tslint:disable */
+import { unstable_Box as Box } from '@material-ui/core/Box';
+/* tslint:enable */
+
+import { createStyles, Theme } from "@material-ui/core";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Typography from "@material-ui/core/Typography";
+
+const logo = 'test';
+
+//require('../images/logo.svg');
+
+interface Props {
+    classes?: any;
+}
+
+const styles = (theme: Theme) => createStyles({
+    footer: {
+        backgroundColor: `${theme.palette.grey['100']}`,
+    }
+
+});
+
+class Footer extends Component<Props> {
+    state = {
+        year: new Date().getFullYear()
+    };
+
     render() {
+        const {classes} = this.props;
+
         return (
-            <div>
-                Footer
-            </div>
+            <footer className={classes.footer}>
+                <Box display="flex" flexdirection="row" justifyContent="center">
+                    <Typography variant="h6" color="inherit" noWrap>
+                        <p>&copy; {this.state.year} Copyright: LodeDistrict</p>
+                    </Typography>
+                </Box>
+            </footer>
         );
     }
 }
+
+export default withStyles(styles)(Footer)

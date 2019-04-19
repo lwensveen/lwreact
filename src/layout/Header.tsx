@@ -15,10 +15,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Menu from './Menu';
 import { createStyles, Theme } from "@material-ui/core";
+
 const logo = 'test';
+
 //require('../images/logo.svg');
 
-interface Props extends RouteComponentProps<any>  {
+interface Props extends RouteComponentProps<any> {
     classes?: any;
 }
 
@@ -51,7 +53,7 @@ const styles = (theme: Theme) => createStyles({
         marginLeft: 32,
         paddingLeft: 24,
         [theme.breakpoints.up('md')]: {
-            paddingTop: '1.5em'
+            paddingTop: '1em'
         }
     },
     tagline: {
@@ -102,66 +104,58 @@ class Header extends Component<Props> {
         window.scrollTo(0, 0);
     }
 
-
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <AppBar position="sticky" color="default" className={classes.appBar}>
                 <Toolbar>
                     <Grid container spacing={24} alignItems="baseline">
                         <Grid item xs={12} className={classes.flex}>
-                            <div className={classes.inline}>
-                                <Typography variant="h6" color="inherit" noWrap>
-                                    <Link to='/' className={classes.link}>
-                                        <img width={20} src={logo} alt=""/>
-                                        <span className={classes.tagline}>LWReact</span>
-                                    </Link>
-                                </Typography>
-                            </div>
-                            {/*{!this.props.noTabs && (*/}
-                                {/*<React.Fragment>*/}
-                                    {/*<div className={classes.productLogo}>*/}
-                                        {/*<Typography>*/}
-                                            {/*A material UI Template*/}
-                                        {/*</Typography>*/}
-                                    {/*</div>*/}
-                                    {/*<div className={classes.iconContainer}>*/}
-                                        {/*<IconButton onClick={this.mobileMenuOpen} className={classes.iconButton}*/}
-                                                    {/*color="inherit" aria-label="Menu">*/}
-                                            {/*<MenuIcon/>*/}
-                                        {/*</IconButton>*/}
-                                    {/*</div>*/}
-                                    {/*<div className={classes.tabContainer}>*/}
-                                        {/*<SwipeableDrawer anchor="right" open={this.state.menuDrawer}*/}
-                                                         {/*onClose={this.mobileMenuClose} onOpen={this.mobileMenuOpen}>*/}
-                                            {/*<AppBar title="Menu"/>*/}
-                                            {/*<List>*/}
-                                                {/*{Menu.map((item, index) => (*/}
-                                                    {/*<ListItem component={Link} to={{*/}
-                                                        {/*pathname: item.pathname,*/}
-                                                        {/*search: this.props.location.search*/}
-                                                    {/*}} button key={item.label}>*/}
-                                                        {/*<ListItemText primary={item.label}/>*/}
-                                                    {/*</ListItem>*/}
-                                                {/*))}*/}
-                                            {/*</List>*/}
-                                        {/*</SwipeableDrawer>*/}
-                                        {/*<Tabs*/}
-                                            {/*value={this.current() || this.state.value}*/}
-                                            {/*indicatorColor="primary"*/}
-                                            {/*textColor="primary"*/}
-                                            {/*onChange={this.handleChange}*/}
-                                        {/*>*/}
-                                            {/*{Menu.map((item, index) => (*/}
-                                                {/*<Tab key={index} component={Link}*/}
-                                                     {/*to={{pathname: item.pathname, search: this.props.location.search}}*/}
-                                                     {/*classes={{root: classes.tabItem}} label={item.label}/>*/}
-                                            {/*))}*/}
-                                        {/*</Tabs>*/}
-                                    {/*</div>*/}
-                                {/*</React.Fragment>*/}
-                            {/*)}*/}
+                            <React.Fragment>
+                                <div className={classes.productLogo}>
+                                    <Typography variant="h6" color="inherit" noWrap>
+                                        <Link to='/' className={classes.link}>
+                                            <img width={20} src={logo} alt=""/>
+                                            <span className={classes.tagline}>LWReact</span>
+                                        </Link>
+                                    </Typography>
+                                </div>
+                                <div className={classes.iconContainer}>
+                                    <IconButton onClick={this.mobileMenuOpen} className={classes.iconButton}
+                                                color="inherit" aria-label="Menu">
+                                        <MenuIcon/>
+                                    </IconButton>
+                                </div>
+                                <div className={classes.tabContainer}>
+                                    <SwipeableDrawer anchor="right" open={this.state.menuDrawer}
+                                                     onClose={this.mobileMenuClose} onOpen={this.mobileMenuOpen}>
+                                        <AppBar title="Menu"/>
+                                        <List>
+                                            {Menu.map((item, index) => (
+                                                <Link to={{
+                                                    pathname: item.pathname,
+                                                    search: this.props.location.search
+                                                }} key={item.label}>
+                                                    <ListItemText primary={item.label}/>
+                                                </Link>
+                                            ))}
+                                        </List>
+                                    </SwipeableDrawer>
+                                    <Tabs
+                                        value={this.state.value}
+                                        indicatorColor="primary"
+                                        textColor="primary"
+                                        onChange={this.handleChange}>
+                                        {Menu.map((item, index) => (
+                                            <Tab key={index} classes={{root: classes.tabItem}} label={item.label}>
+                                                <Link
+                                                    to={{pathname: item.pathname, search: this.props.location.search}}/>
+                                            </Tab>
+                                        ))}
+                                    </Tabs>
+                                </div>
+                            </React.Fragment>
                         </Grid>
                     </Grid>
                 </Toolbar>
@@ -170,4 +164,4 @@ class Header extends Component<Props> {
     }
 }
 
-export default withRouter(withStyles(styles)(Header))
+export default withRouter(withStyles(styles)(Header));

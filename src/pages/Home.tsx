@@ -32,10 +32,6 @@ class Home extends Component<Props> {
             <div className={classes.main}>
                 <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-between">
                     <ProjectCard/>
-                    <ProjectCard/>
-                    <ProjectCard/>
-                    <ProjectCard/>
-                    <ProjectCard/>
                 </Box>
             </div>
         );
