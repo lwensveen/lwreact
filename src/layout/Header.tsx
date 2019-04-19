@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,10 +14,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Menu from './Menu';
+import { createStyles, Theme } from "@material-ui/core";
+const logo = 'test';
+//require('../images/logo.svg');
 
-const logo = 'test';//require('../images/logo.svg');
+interface Props extends RouteComponentProps<any>  {
+    classes?: any;
+}
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
     appBar: {
         position: 'relative',
         boxShadow: 'none',
@@ -75,23 +80,21 @@ const styles = theme => ({
     }
 });
 
-class Header extends Component {
-
-
+class Header extends Component<Props> {
     state = {
         value: 0,
         menuDrawer: false
     };
 
-    handleChange = (event, value) => {
+    handleChange = (event: any, value: number) => {
         this.setState({value});
     };
 
-    mobileMenuOpen = (event) => {
+    mobileMenuOpen = (event: React.MouseEvent<HTMLInputElement>) => {
         this.setState({menuDrawer: true});
     };
 
-    mobileMenuClose = (event) => {
+    mobileMenuClose = (event: React.MouseEvent<HTMLInputElement>) => {
         this.setState({menuDrawer: false});
     };
 
@@ -101,7 +104,7 @@ class Header extends Component {
 
 
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
 
         return (
             <AppBar position="sticky" color="default" className={classes.appBar}>

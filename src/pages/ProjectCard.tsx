@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
+import { Theme, withStyles } from '@material-ui/core/styles';
+
+const classNames = require('classnames');
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -17,7 +18,16 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const styles = theme => ({
+
+interface Props {
+    classes?: any;
+}
+
+interface State {
+    expanded?: boolean;
+}
+
+const styles = (theme: Theme) => ({
     card: {
         width: 400,
         marginTop: 20,
@@ -45,15 +55,15 @@ const styles = theme => ({
     },
 });
 
-class ProjectCard extends React.Component {
-    state = { expanded: false };
+class ProjectCard extends React.Component<Props, State> {
+    state = {expanded: false};
 
     handleExpandClick = () => {
-        this.setState(state => ({ expanded: !state.expanded }));
+        this.setState(state => ({expanded: !state.expanded}));
     };
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <Card className={classes.card}>
@@ -65,7 +75,7 @@ class ProjectCard extends React.Component {
                     }
                     action={
                         <IconButton>
-                            <MoreVertIcon />
+                            <MoreVertIcon/>
                         </IconButton>
                     }
                     title="Shrimp and Chorizo Paella"
@@ -84,20 +94,21 @@ class ProjectCard extends React.Component {
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
                     <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon />
+                        <FavoriteIcon/>
                     </IconButton>
                     <IconButton aria-label="Share">
-                        <ShareIcon />
+                        <ShareIcon/>
                     </IconButton>
                     <IconButton
-                        className={classnames(classes.expand, {
-                            [classes.expandOpen]: this.state.expanded,
-                        })}
+                        className={
+                            classNames(classes.expand, {
+                                [classes.expandOpen]: this.state.expanded,
+                            })
+                        }
                         onClick={this.handleExpandClick}
                         aria-expanded={this.state.expanded}
-                        aria-label="Show more"
-                    >
-                        <ExpandMoreIcon />
+                        aria-label="Show more">
+                        <ExpandMoreIcon/>
                     </IconButton>
                 </CardActions>
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
@@ -131,9 +142,5 @@ class ProjectCard extends React.Component {
         );
     }
 }
-
-ProjectCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(ProjectCard);
