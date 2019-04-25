@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "../components/ProjectCard"
 
 /* tslint:disable */
 import { unstable_Box as Box } from '@material-ui/core/Box';
@@ -10,7 +10,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { createStyles } from "@material-ui/core";
 
-interface Props extends RouteComponentProps<any>  {
+interface Props extends RouteComponentProps<any> {
     classes?: any;
 }
 
@@ -23,7 +23,7 @@ const styles = createStyles({
     }
 });
 
-class Home extends Component<Props> {
+class WebShop extends Component<Props> {
 
     render() {
         const {classes} = this.props;
@@ -38,4 +38,4 @@ class Home extends Component<Props> {
     }
 }
 
-export default withRouter(withStyles(styles)(Home))
+export default withRouter(withStyles(styles)(WebShop))
