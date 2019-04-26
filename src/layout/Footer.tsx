@@ -9,16 +9,15 @@ import { createStyles, Theme } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 
-const logo = 'test';
-
-//require('../images/logo.svg');
-
 interface Props {
     classes?: any;
 }
 
 const styles = (theme: Theme) => createStyles({
     footer: {
+        bottom: 0,
+        position: 'absolute',
+        width: '100%',
         backgroundColor: `${theme.palette.grey['100']}`,
     }
 

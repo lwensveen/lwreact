@@ -10,6 +10,6 @@ const AsyncCSVUpload = asyncComponent(() => import("./containers/CSVUpload"));
 export default () =>
     <Switch>
         <Route path="/" exact component={AsyncHome}/>
-        <Route path="/example/webshop" exact component={AsyncWebShop}/>
-        <Route path="/example/csv-upload" exact component={AsyncCSVUpload}/>
+        <Route path="/examples/webshop" exact component={AsyncWebShop}/>
+        <Route path="/examples/csv-upload" exact component={AsyncCSVUpload}/>
     </Switch>;
