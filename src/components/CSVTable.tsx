@@ -33,7 +33,7 @@ export class CSVTable extends Component<IProps> {
                     </tr>
                     </thead>
                     <tbody>
-                    {person}
+                        {person}
                     </tbody>
                 </table>
             );
