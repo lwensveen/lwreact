@@ -11,7 +11,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { createStyles } from "@material-ui/core";
 
 interface Props extends RouteComponentProps<any> {
-    classes?: any;
+    classes: any;
 }
 
 const styles = createStyles({

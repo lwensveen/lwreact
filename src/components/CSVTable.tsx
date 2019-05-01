@@ -35,7 +35,7 @@ export class CSVTable extends Component<Props> {
                     </tr>
                     </thead>
                     <tbody>
-                        {person}
+                    {person}
                     </tbody>
                 </table>
             )

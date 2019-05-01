@@ -103,7 +103,7 @@ class CSVUpload extends Component<Props, State> {
 
     render() {
         return (
-            <Box display="flex" flexDirection="row" justifyContent="center">
+            <Box height="100%" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
                 <Card>
                     <CardHeader title="CSV upload">
                     </CardHeader>

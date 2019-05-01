@@ -20,11 +20,11 @@ const classNames = require('classnames');
 
 
 interface Props {
-    classes?: any;
+    classes: any;
 }
 
 interface State {
-    expanded?: boolean;
+    expanded: boolean;
 }
 
 const styles = (theme: Theme) => ({
