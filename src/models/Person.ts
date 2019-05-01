@@ -1,6 +1,6 @@
-export class Person {
-    public firstName!: string;
-    public surname!: string;
-    public issueCount!: number;
-    public dateOfBirth!: string;
+export interface Person {
+    firstName: string;
+    surname: string;
+    issueCount: number;
+    dateOfBirth: string;
 }

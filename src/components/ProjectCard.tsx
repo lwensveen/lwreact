@@ -18,11 +18,11 @@ import ShareIcon from "@material-ui/icons/Share";
 
 import classNames from "classnames";
 
-interface IProps {
+interface Props {
     classes: any;
 }
 
-interface IState {
+interface State {
     expanded: boolean;
 }
 
@@ -54,7 +54,7 @@ const styles = (theme: Theme) => ({
     },
 });
 
-class ProjectCard extends React.Component<IProps, IState> {
+class ProjectCard extends React.Component<Props, State> {
     public state = {expanded: false};
 
     public handleExpandClick = () => {

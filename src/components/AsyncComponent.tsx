@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
-interface IProps {
+interface Props {
     component: any;
 }
 
-interface IState {
+interface State {
     component: any;
 }
 
 export default function asyncComponent(importComponent: any) {
-    class AsyncComponent extends Component<IProps, IState> {
+    class AsyncComponent extends Component<Props, State> {
         constructor(props: any) {
             super(props);
 

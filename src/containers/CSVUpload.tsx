@@ -13,18 +13,18 @@ import CSVTable from "../components/CSVTable";
 import FileInput from "../components/FileInput";
 import { Person } from "../models/Person";
 
-interface IProps extends RouteComponentProps<any> {
+interface Props extends RouteComponentProps<any> {
     classes: any;
     onChange: any;
     orderBy: any;
 }
 
-interface IState {
+interface State {
     headers: string[];
     persons: Person[];
 }
 
-class CSVUpload extends Component<IProps, IState> {
+class CSVUpload extends Component<Props, State> {
     public headers: string[] = [];
     public person: string[] = [];
     public persons: Person[] = [];

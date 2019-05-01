@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Person } from "../models/Person";
 
-interface IProps {
+interface Props {
     headers: string[];
     persons: Person[];
     orderBy: any;
 }
 
-export class CSVTable extends Component<IProps> {
+export class CSVTable extends Component<Props> {
 
     public render() {
 

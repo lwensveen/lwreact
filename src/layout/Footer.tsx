@@ -8,7 +8,7 @@ import { createStyles, Theme } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 
-interface IProps {
+interface Props {
     classes: any;
 }
 
@@ -22,7 +22,7 @@ const styles = (theme: Theme) => createStyles({
 
 });
 
-class Footer extends Component<IProps> {
+class Footer extends Component<Props> {
     public state = {
         year: new Date().getFullYear(),
     };

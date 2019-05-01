@@ -10,7 +10,7 @@ import { createStyles } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
-interface IProps extends RouteComponentProps<any> {
+interface Props extends RouteComponentProps<any> {
     classes: any;
 }
 
@@ -23,7 +23,7 @@ const styles = createStyles({
     },
 });
 
-class Home extends Component<IProps> {
+class Home extends Component<Props> {
 
     public render() {
         const {classes} = this.props;
