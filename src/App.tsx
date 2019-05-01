@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blue, indigo } from '@material-ui/core/colors'
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { blue, indigo } from "@material-ui/core/colors";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import React, { Component } from "react";
 
-import './App.css'
-import Routes from './Routes';
-import Header from './layout/Header';
-import Footer from './layout/Footer'
-
+import "./App.css";
+import Footer from "./layout/Footer";
+import Header from "./layout/Header";
+import Routes from "./Routes";
 
 const theme = createMuiTheme({
     palette: {
-        secondary: {
-            main: blue[900]
-        },
         primary: {
-            main: indigo[700]
-        }
+            main: indigo[700],
+        },
+        secondary: {
+            main: blue[900],
+        },
     },
     typography: {
         useNextVariants: true,
@@ -24,7 +23,7 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
-    render() {
+    public render() {
         return (
             <React.Fragment>
                 <CssBaseline/>

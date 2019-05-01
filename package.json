@@ -6,6 +6,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^4.0.0-alpha.8",
+    "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.11",
     "@types/material-ui": "^0.21.6",
     "@types/node": "^11.13.7",
@@ -24,9 +25,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "lint-fix": "tslint --fix -c tslint.json 'src/**/*.{ts,tsx}'"
   },
-  "eslintConfig": {
+  "tslintConfig": {
     "extends": "react-app"
   },
   "browserslist": [
@@ -34,5 +37,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "tslint": "^5.16.0",
+    "tslint-react": "^4.0.0"
+  }
 }

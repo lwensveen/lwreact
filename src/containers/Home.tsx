@@ -1,31 +1,31 @@
 import React, { Component } from "react";
+import ProjectCard from "../components/ProjectCard";
 import "./Home.css";
-import ProjectCard from "../components/ProjectCard"
 
 /* tslint:disable */
 import { unstable_Box as Box } from '@material-ui/core/Box';
 /* tslint:enable */
 
+import { createStyles } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { createStyles } from "@material-ui/core";
 
-interface Props extends RouteComponentProps<any> {
+interface IProps extends RouteComponentProps<any> {
     classes: any;
 }
 
 const styles = createStyles({
     main: {
-        padding: 20,
+        marginLeft: "auto",
+        marginRight: "auto",
         maxWidth: 1540,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-    }
+        padding: 20,
+    },
 });
 
-class Home extends Component<Props> {
+class Home extends Component<IProps> {
 
-    render() {
+    public render() {
         const {classes} = this.props;
 
         return (
@@ -38,4 +38,4 @@ class Home extends Component<Props> {
     }
 }
 
-export default withRouter(withStyles(styles)(Home))
+export default withRouter(withStyles(styles)(Home));

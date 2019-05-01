@@ -1,1 +1,1 @@
-declare module '@material-ui/core/Box';
+declare module "@material-ui/core/Box";

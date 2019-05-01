@@ -5,46 +5,40 @@ import "./Home.css";
 import { unstable_Box as Box } from '@material-ui/core/Box';
 /* tslint:enable */
 
-import { RouteComponentProps, withRouter } from "react-router-dom";
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import FileInput from "../components/FileInput";
-import CSVTable from "../components/CSVTable";
 import { CardContent } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import CSVTable from "../components/CSVTable";
+import FileInput from "../components/FileInput";
+import { Person } from "../models/Person";
 
-export class Person {
-    firstName!: string;
-    surname!: string;
-    issueCount!: number;
-    dateOfBirth!: string;
-}
-
-interface Props extends RouteComponentProps<any> {
+interface IProps extends RouteComponentProps<any> {
     classes: any;
     onChange: any;
     orderBy: any;
 }
 
-interface State {
+interface IState {
     headers: string[];
     persons: Person[];
 }
 
-class CSVUpload extends Component<Props, State> {
-    headers: string[] = [];
-    person: string[] = [];
-    persons: Person[] = [];
+class CSVUpload extends Component<IProps, IState> {
+    public headers: string[] = [];
+    public person: string[] = [];
+    public persons: Person[] = [];
 
     constructor(props: any) {
         super(props);
 
         this.state = {
             headers: [],
-            persons: []
-        }
+            persons: [],
+        };
     }
 
-    handleChange = (event: any) => {
+    public handleChange = (event: any) => {
         event.preventDefault();
         const files = event.target.files;
         const file = files[0];
@@ -58,19 +52,18 @@ class CSVUpload extends Component<Props, State> {
 
             this.setState({
                 headers: data.headers,
-                persons: data.persons
+                persons: data.persons,
             });
-        }
-    };
+        };
+    }
 
-    orderBy = (event: any) => {
-        console.log('event', event);
+    public orderBy = (event: any) => {
         event.preventDefault();
 
         this.setState({
-            persons: this.state.persons.reverse()
-        })
-    };
+            persons: this.state.persons.reverse(),
+        });
+    }
 
     // filterBy(filterProp) {
     //     this.persons.filter(person => {
@@ -78,18 +71,18 @@ class CSVUpload extends Component<Props, State> {
     //     });
     // }
 
-    extractData(data: any) {
+    public extractData(data: any) {
         const allTextLines = data.split(/\r\n|\n/);
 
         allTextLines.slice(1).map((line: string) => {
-            this.headers = replaceQuotes(allTextLines[0].split(','));
-            this.person = replaceQuotes(line.split(','));
+            this.headers = replaceQuotes(allTextLines[0].split(","));
+            this.person = replaceQuotes(line.split(","));
 
             return this.persons.push({
+                dateOfBirth: new Date(this.person[3]).toLocaleDateString(),
                 firstName: this.person[0],
-                surname: this.person[1],
                 issueCount: parseInt(this.person[2], 10),
-                dateOfBirth: new Date(this.person[3]).toLocaleDateString()
+                surname: this.person[1],
             });
         });
 
@@ -97,38 +90,41 @@ class CSVUpload extends Component<Props, State> {
 
         return {
             headers: this.headers,
-            persons: this.persons
-        }
+            persons: this.persons,
+        };
     }
 
-    render() {
+    public render() {
         return (
             <Box height="100%" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
                 <Card>
-                    <CardHeader title="CSV upload">
-                    </CardHeader>
+                    <CardHeader title="CSV upload"/>
                     <CardContent>
                         <FileInput
-                            onChange={(e: React.ChangeEvent) => {
-                                this.handleChange(e)
-                            }}
+                            onChange={this.buttonChanged}
                         />
                         <CSVTable
                             headers={this.state.headers}
                             persons={this.state.persons}
-                            orderBy={(e: any) => {
-                                this.orderBy(e)
-                            }}
+                            orderBy={this.buttonClicked}
                         />
                     </CardContent>
                 </Card>
             </Box>
         );
     }
+
+    private buttonChanged = (e: React.ChangeEvent) => {
+        this.handleChange(e);
+    }
+
+    private buttonClicked = (e: React.ChangeEvent) => {
+        this.orderBy(e);
+    }
 }
 
 function replaceQuotes(text: string[]): string[] {
-    return text.map((column) => column.replace(/"/g, ''));
+    return text.map((column) => column.replace(/"/g, ""));
 }
 
-export default withRouter(CSVUpload)
+export default withRouter(CSVUpload);

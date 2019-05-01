@@ -1,30 +1,28 @@
 import React, { Component } from "react";
-import { Person } from "../containers/CSVUpload";
+import { Person } from "../models/Person";
 
-interface Props {
+interface IProps {
     headers: string[];
     persons: Person[];
     orderBy: any;
 }
 
-export class CSVTable extends Component<Props> {
+export class CSVTable extends Component<IProps> {
 
-    render() {
-
-        console.log('this.props.data', this.props);
+    public render() {
 
         if (this.props.headers && this.props.persons) {
-            const headers = this.props.headers.map((headers: any) =>
-                <th key={headers + 1}>{headers}</th>
+            const headers = this.props.headers.map((propHeaders) =>
+                <th key={propHeaders + 1}>{propHeaders}</th>,
             );
 
-            const person = this.props.persons.map((persons: any) =>
+            const person = this.props.persons.map((persons) =>
                 <tr key={persons.firstName + 1}>
                     <td>{persons.firstName}</td>
                     <td>{persons.surname}</td>
                     <td>{persons.issueCount}</td>
                     <td>{persons.dateOfBirth}</td>
-                </tr>
+                </tr>,
             );
 
             return (
@@ -38,7 +36,7 @@ export class CSVTable extends Component<Props> {
                     {person}
                     </tbody>
                 </table>
-            )
+            );
         }
         return null;
 

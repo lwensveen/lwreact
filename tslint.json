@@ -1,0 +1,8 @@
+{
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+    // override tslint-react rules here
+    "no-submodule-imports": false,
+    "jsx-wrap-multiline": false
+  }
+}
