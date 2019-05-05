@@ -58,7 +58,7 @@ class Header extends Component<RouteComponentProps> {
             <header className="header">
                 <Box display="flex" flexDirection="row" justifyContent="space-between">
                     <Box className="logo" flexDirection="column">
-                        <h3>LWReact</h3>
+                        <h1>LWReact</h1>
                     </Box>
                     <Box alignSelf="center">
                         <nav>
