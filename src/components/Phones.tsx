@@ -47,7 +47,7 @@ const styles = (theme: Theme) => ({
     },
 });
 
-class Phones extends React.Component<Props> {
+class Phones extends React.PureComponent<Props> {
 
     public render() {
         const {classes} = this.props;
