@@ -15,7 +15,7 @@ import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../../components/ProjectCard";
 
 class WebShop extends Component<RouteComponentProps> {
 

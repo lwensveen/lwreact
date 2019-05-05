@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Home.css";
+import "../Home.css";
 
 /* tslint:disable */
 import { unstable_Box as Box } from '@material-ui/core/Box';
@@ -9,9 +9,9 @@ import { CardContent } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import CSVTable from "../components/CSVTable";
-import FileInput from "../components/FileInput";
-import { Person } from "../models/Person";
+import CSVTable from "../../components/CSVTable";
+import FileInput from "../../components/FileInput";
+import { Person } from "../../models/Person";
 
 interface Props extends RouteComponentProps<any> {
     classes: any;

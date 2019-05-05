@@ -1,5 +1,4 @@
 import { blue, indigo } from "@material-ui/core/colors";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import React, { Component } from "react";
 
@@ -26,7 +25,6 @@ class App extends Component {
     public render() {
         return (
             <React.Fragment>
-                <CssBaseline/>
                 <Header/>
                 <MuiThemeProvider theme={theme}>
                     <Routes/>
