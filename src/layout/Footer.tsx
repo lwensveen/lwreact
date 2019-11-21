@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Footer.scss";
 /* tslint:disable */
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 /* tslint:enable */
 

@@ -3,7 +3,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import "./Header.scss";
 
 /* tslint:disable */
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 /* tslint:enable */
 
 import IconButton from "@material-ui/core/IconButton";

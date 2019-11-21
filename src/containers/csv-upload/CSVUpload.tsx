@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../Home.css";
 
 /* tslint:disable */
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 /* tslint:enable */
 
 import { CardContent } from "@material-ui/core";

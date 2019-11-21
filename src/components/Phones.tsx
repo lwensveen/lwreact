@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { Button } from "@material-ui/core";
 
-import { unstable_Box as Box } from "@material-ui/core/Box";
+import Box from "@material-ui/core/Box";
 import { PhonesInterface } from "../mocks/phones";
 import "./Phones.scss";
 

@@ -87,7 +87,7 @@ class ProjectCard extends React.Component<Props, State> {
                         guests. Add 1 cup of frozen peas along with the mussels, if you like.
                     </Typography>
                 </CardContent>
-                <CardActions className={classes.actions} disableActionSpacing={true}>
+                <CardActions className={classes.actions} disableSpacing={true}>
                     <IconButton aria-label="Add to favorites">
                         <FavoriteIcon/>
                     </IconButton>

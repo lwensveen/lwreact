@@ -3,7 +3,7 @@ import ProjectCard from "../components/ProjectCard";
 import "./Home.css";
 
 /* tslint:disable */
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 /* tslint:enable */
 
 import { createStyles } from "@material-ui/core";

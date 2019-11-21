@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Shop.scss";
 /* tslint:disable */
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 import { ExpansionPanelDetails } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
