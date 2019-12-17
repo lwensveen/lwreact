@@ -1,73 +1,78 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Theme, withStyles } from "@material-ui/core/styles";
+import React from "react";
 
-const styles = theme => ({
-    card: {
-        width: 400,
-        marginTop: 20,
-        marginBottom: 20,
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
+import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import Collapse from "@material-ui/core/Collapse";
+import red from "@material-ui/core/colors/red";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import ShareIcon from "@material-ui/icons/Share";
+
+import classNames from "classnames";
+
+interface Props {
+    classes: any;
+}
+
+interface State {
+    expanded: boolean;
+}
+
+const styles = (theme: Theme) => ({
     actions: {
-        display: 'flex',
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
+        display: "flex",
     },
     avatar: {
         backgroundColor: red[500],
     },
+    card: {
+        marginBottom: 20,
+        marginTop: 20,
+        width: 400,
+    },
+    expand: {
+        marginLeft: "auto",
+        transform: "rotate(0deg)",
+        transition: theme.transitions.create("transform", {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: "rotate(180deg)",
+    },
+    media: {
+        height: 0,
+        paddingTop: "56.25%", // 16:9
+    },
 });
 
-class ProjectCard extends React.Component {
-    state = { expanded: false };
+class ProjectCard extends React.Component<Props, State> {
+    public state = {expanded: false};
 
-    handleExpandClick = () => {
-        this.setState(state => ({ expanded: !state.expanded }));
-    };
+    public handleExpandClick = () => {
+        this.setState((state) => ({expanded: !state.expanded}));
+    }
 
-    render() {
-        const { classes } = this.props;
+    public render() {
+        const {classes} = this.props;
+
+        const classNames1 = classNames(classes.expand, {
+            [classes.expandOpen]: this.state.expanded,
+        });
 
         return (
             <Card className={classes.card}>
                 <CardHeader
-                    avatar={
-                        <Avatar aria-label="Recipe" className={classes.avatar}>
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton>
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
+                    avatar={<Avatar aria-label="Recipe" className={classes.avatar}>R</Avatar>}
+                    action={<IconButton><MoreVertIcon/></IconButton>}
                     title="Shrimp and Chorizo Paella"
                     subheader="September 14, 2016"
                 />
@@ -82,32 +87,30 @@ class ProjectCard extends React.Component {
                         guests. Add 1 cup of frozen peas along with the mussels, if you like.
                     </Typography>
                 </CardContent>
-                <CardActions className={classes.actions} disableActionSpacing>
+                <CardActions className={classes.actions} disableSpacing={true}>
                     <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon />
+                        <FavoriteIcon/>
                     </IconButton>
                     <IconButton aria-label="Share">
-                        <ShareIcon />
+                        <ShareIcon/>
                     </IconButton>
                     <IconButton
-                        className={classnames(classes.expand, {
-                            [classes.expandOpen]: this.state.expanded,
-                        })}
+                        className={classNames1}
                         onClick={this.handleExpandClick}
                         aria-expanded={this.state.expanded}
                         aria-label="Show more"
                     >
-                        <ExpandMoreIcon />
+                        <ExpandMoreIcon/>
                     </IconButton>
                 </CardActions>
-                <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                <Collapse in={this.state.expanded} timeout="auto" unmountOnExit={true}>
                     <CardContent>
-                        <Typography paragraph>Method:</Typography>
-                        <Typography paragraph>
+                        <Typography paragraph={true}>Method:</Typography>
+                        <Typography paragraph={true}>
                             Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
                             minutes.
                         </Typography>
-                        <Typography paragraph>
+                        <Typography paragraph={true}>
                             Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
                             heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
                             browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
@@ -115,7 +118,7 @@ class ProjectCard extends React.Component {
                             salt and pepper, and cook, stirring often until thickened and fragrant, about 10
                             minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
                         </Typography>
-                        <Typography paragraph>
+                        <Typography paragraph={true}>
                             Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
                             without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat
                             to medium-low, add reserved shrimp and mussels, tucking them down into the rice, and
@@ -131,9 +134,5 @@ class ProjectCard extends React.Component {
         );
     }
 }
-
-ProjectCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(ProjectCard);

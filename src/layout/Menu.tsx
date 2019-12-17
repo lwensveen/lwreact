@@ -1,24 +1,24 @@
 const Menu = [
     {
         label: "Home",
-        pathname: "/"
+        pathname: "/",
     },
     {
         label: "Dashboard",
-        pathname: "/dashboard"
+        pathname: "/dashboard",
     },
     {
         label: "Signup",
-        pathname: "/signup"
+        pathname: "/signup",
     },
     {
         label: "Wizard",
-        pathname: "/wizard"
+        pathname: "/wizard",
     },
     {
         label: "Cards",
-        pathname: "/cards"
-    }
+        pathname: "/cards",
+    },
 
 ];
 
