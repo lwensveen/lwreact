@@ -1,15 +1,19 @@
+import { createStyles } from "@material-ui/core";
+import AppBar from "@material-ui/core/AppBar";
+import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import MenuIcon from "@material-ui/icons/Menu";
+import { withStyles } from "@material-ui/styles";
 import React, { Component } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import "./Header.scss";
 
-/* tslint:disable */
-import Box from '@material-ui/core/Box';
-/* tslint:enable */
-
-import IconButton from "@material-ui/core/IconButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+interface Props extends RouteComponentProps<any> {
+    classes: any;
+}
 
 const options = [
     {
@@ -21,11 +25,22 @@ const options = [
         id: 2,
         title: "LinkedIn",
         url: "https://www.linkedin.com/in/lwensveen/",
-    }
-    ,
+    },
 ];
 
-class Header extends Component<RouteComponentProps> {
+const styles = createStyles({
+    root: {
+        flexGrow: 1,
+    },
+    title: {
+        flexGrow: 1,
+    },
+    toolbar: {
+        backgroundColor: "blue",
+    },
+});
+
+class Header extends Component<Props> {
 
     public state = {
         anchorEl: null,
@@ -46,6 +61,7 @@ class Header extends Component<RouteComponentProps> {
     public render() {
         const {anchorEl} = this.state;
         const open = Boolean(anchorEl);
+        const {classes} = this.props;
 
         const menuItems = options.map((option) => (
             <MenuItem key={option.id} onClick={this.handleClose}>
@@ -54,33 +70,26 @@ class Header extends Component<RouteComponentProps> {
         ));
 
         return (
-
-            <header className="header">
-                <Box display="flex" flexDirection="row" justifyContent="space-between">
-                    <Box className="logo" flexDirection="column">
-                        <h1>LWReact</h1>
-                    </Box>
-                    <Box alignSelf="center">
-                        <nav>
-                            <IconButton onClick={this.handleClick}>
-                                <MoreVertIcon/>
-                            </IconButton>
-
-                            <Menu
-                                id="long-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={this.handleClose}
-                            >
-                                {menuItems}
-                            </Menu>
-                        </nav>
-
-                    </Box>
-                </Box>
-            </header>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography className={classes.title} variant="h6">
+                        LWReact
+                    </Typography>
+                    <IconButton onClick={this.handleClick} edge="start" color="inherit" aria-label="menu">
+                        <MenuIcon/>
+                    </IconButton>
+                    <Menu
+                        id="long-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={this.handleClose}
+                    >
+                        {menuItems}
+                    </Menu>
+                </Toolbar>
+            </AppBar>
         );
     }
 }
 
-export default withRouter(Header);
+export default withRouter(withStyles(styles)(Header));
