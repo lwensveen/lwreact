@@ -1,5 +1,5 @@
 import React from "react";
-import {Person} from "../models/Person";
+import { Person } from "../models/Person";
 
 interface Props {
     headers: string[];
@@ -7,11 +7,14 @@ interface Props {
     orderBy: any;
 }
 
-export class CSVTable extends React.Component<Props, any> {
+export class CSVTable extends React.PureComponent<Props, any> {
 
     public render() {
 
+
         if (this.props.headers && this.props.persons) {
+            console.log(this.props)
+
             const headers = this.props.headers.map((propHeaders) =>
                 <th key={propHeaders + 1}>{propHeaders}</th>,
             );

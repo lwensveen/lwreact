@@ -51,7 +51,7 @@ class Shop extends React.PureComponent<RouteComponentProps, State> {
         }
 
         this.setState({
-            phones: PHONES,
+            phones: [...PHONES],
         });
     }
 
@@ -69,7 +69,7 @@ class Shop extends React.PureComponent<RouteComponentProps, State> {
         }
 
         this.setState({
-            phones: PHONES,
+            phones: [...PHONES],
         });
     }
 

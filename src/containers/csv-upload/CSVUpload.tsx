@@ -20,7 +20,7 @@ interface State {
     persons: Person[];
 }
 
-class CSVUpload extends React.Component<Props, State> {
+class CSVUpload extends React.PureComponent<Props, State> {
     public headers: string[] = [];
     public person: string[] = [];
     public persons: Person[] = [];
@@ -47,8 +47,8 @@ class CSVUpload extends React.Component<Props, State> {
             const data = this.extractData(csv);
 
             this.setState({
-                headers: data.headers,
-                persons: data.persons,
+                headers: [...data.headers],
+                persons: [...data.persons],
             });
         };
     }
@@ -57,7 +57,7 @@ class CSVUpload extends React.Component<Props, State> {
         event.preventDefault();
 
         this.setState({
-            persons: this.state.persons.reverse(),
+            persons: [...this.state.persons.reverse()],
         });
     }
 
