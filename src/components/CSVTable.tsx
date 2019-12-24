@@ -11,9 +11,7 @@ export class CSVTable extends React.PureComponent<Props, any> {
 
     public render() {
 
-
         if (this.props.headers && this.props.persons) {
-            console.log(this.props)
 
             const headers = this.props.headers.map((propHeaders) =>
                 <th key={propHeaders + 1}>{propHeaders}</th>,
