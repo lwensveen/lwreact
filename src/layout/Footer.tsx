@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import Box from "@material-ui/core/Box";
+import React from "react";
 import "./Footer.scss";
-/* tslint:disable */
-import Box from '@material-ui/core/Box';
 
-/* tslint:enable */
-
-class Footer extends Component {
+class Footer extends React.PureComponent {
     public state = {
         year: new Date().getFullYear(),
     };

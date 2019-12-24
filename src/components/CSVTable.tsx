@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Person } from "../models/Person";
+import React from "react";
+import {Person} from "../models/Person";
 
 interface Props {
     headers: string[];
@@ -7,7 +7,7 @@ interface Props {
     orderBy: any;
 }
 
-export class CSVTable extends Component<Props> {
+export class CSVTable extends React.Component<Props, any> {
 
     public render() {
 
@@ -33,15 +33,13 @@ export class CSVTable extends Component<Props> {
                     </tr>
                     </thead>
                     <tbody>
-                        {person}
+                    {person}
                     </tbody>
                 </table>
             );
         }
         return null;
-
     }
-
 }
 
 export default CSVTable;

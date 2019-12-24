@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import "./Shop.scss";
-/* tslint:disable */
-import Box from '@material-ui/core/Box';
 import { ExpansionPanelDetails } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 import Checkbox from "@material-ui/core/Checkbox";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import "./Shop.scss";
 
 import { Brands, BRANDS } from "../../../mocks/brands";
 import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
@@ -18,8 +17,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import Phones from "../../../components/Phones";
 
-/* tslint:enable */
-
 interface State {
     brands: Brands[];
     checked: undefined;
@@ -27,7 +24,7 @@ interface State {
     phones: PhonesInterface[];
 }
 
-class Shop extends Component<RouteComponentProps, State> {
+class Shop extends React.PureComponent<RouteComponentProps, State> {
 
     constructor(props: RouteComponentProps) {
         super(props);

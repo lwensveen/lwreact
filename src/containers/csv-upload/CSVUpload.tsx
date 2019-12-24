@@ -1,17 +1,13 @@
-import React, { Component } from "react";
-import "../Home.css";
-
-/* tslint:disable */
-import Box from '@material-ui/core/Box';
-/* tslint:enable */
-
-import { CardContent } from "@material-ui/core";
+import {CardContent} from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import React from "react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import CSVTable from "../../components/CSVTable";
 import FileInput from "../../components/FileInput";
-import { Person } from "../../models/Person";
+import {Person} from "../../models/Person";
+import "../Home.css";
 
 interface Props extends RouteComponentProps<any> {
     classes: any;
@@ -24,7 +20,7 @@ interface State {
     persons: Person[];
 }
 
-class CSVUpload extends Component<Props, State> {
+class CSVUpload extends React.Component<Props, State> {
     public headers: string[] = [];
     public person: string[] = [];
     public persons: Person[] = [];

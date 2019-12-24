@@ -8,12 +8,12 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
-import React, { Component } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import React from "react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import MediaCard from "../../components/MediaCard";
 import "./Webshop.scss";
 
-class WebShop extends Component<RouteComponentProps> {
+class WebShop extends React.PureComponent<RouteComponentProps> {
 
     public render() {
 

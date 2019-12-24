@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
+import React from "react";
 
 interface Props {
     onChange: any;
 }
 
-class FileInput extends PureComponent<Props> {
+class FileInput extends React.PureComponent<Props> {
     public fileInput!: React.RefObject<any>;
 
     public render() {

@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/core/styles";
+import {withStyles} from "@material-ui/core/styles";
 import React from "react";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -11,7 +11,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { Content } from "../containers/Home";
+import {Content} from "../containers/Home";
 
 interface Props {
     classes: any;
@@ -34,7 +34,7 @@ const styles = () => ({
     },
 });
 
-class ProjectCard extends React.Component<Props> {
+class ProjectCard extends React.PureComponent<Props> {
     public render() {
         const classes = this.props.classes;
         const content = this.props.content;

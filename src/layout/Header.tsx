@@ -1,4 +1,4 @@
-import { createStyles } from "@material-ui/core";
+import {createStyles} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
@@ -6,9 +6,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
-import { withStyles } from "@material-ui/styles";
-import React, { Component } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import {withStyles} from "@material-ui/styles";
+import React, {PureComponent} from "react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import "./Header.scss";
 
 interface Props extends RouteComponentProps<any> {
@@ -31,8 +31,8 @@ const options = [
 const styles = createStyles({
     appBar: {
         backgroundColor: "#fff",
-        color: "#000",
         boxShadow: "none",
+        color: "#000",
     },
     root: {
         flexGrow: 1,
@@ -45,7 +45,7 @@ const styles = createStyles({
     },
 });
 
-class Header extends Component<Props> {
+class Header extends PureComponent<Props> {
 
     public state = {
         anchorEl: null,

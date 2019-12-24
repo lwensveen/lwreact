@@ -1,23 +1,23 @@
 .header {
-  padding: 0 40px;
-  border-bottom: 1px solid grey;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+    padding: 0 40px;
+    border-bottom: 1px solid grey;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 
-  .logo {
+    .logo {
 
-    h3 {
-      font-size: 16px;
+        h3 {
+            font-size: 16px;
+        }
+
+        h4 {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
     }
-
-    h4 {
-      margin-bottom: 0;
-      font-size: 14px;
-    }
-
-  }
 }
 
 a {
-  color: darkcyan;
-  text-decoration: none;
+    color: darkcyan;
+    text-decoration: none;
 }

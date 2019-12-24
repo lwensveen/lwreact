@@ -1,11 +1,11 @@
-import { createStyles } from "@material-ui/core";
+import {createStyles} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React, { Component } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import React from "react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import "./Home.css";
 
@@ -41,7 +41,6 @@ export const CONTENT: Content[] = [
     {
         id: 1,
         title: "Webshop",
-        subtitle: "Example e-commerce site (Telecom)",
         avatar: "/assets/javascript.svg",
         url: "examples/webshop",
         bulletpoints: [
@@ -56,11 +55,11 @@ export const CONTENT: Content[] = [
             },
         ],
         content: "Ik heb een ruime ervaring met Angular.",
+        subtitle: "Example e-commerce site (Telecom)",
     },
     {
         id: 2,
         title: "CSV Upload",
-        subtitle: "Example CSV upload functionality",
         avatar: "/assets/javascript.svg",
         url: "examples/csv-upload",
         bulletpoints: [
@@ -75,6 +74,7 @@ export const CONTENT: Content[] = [
             },
         ],
         content: "Ik heb een ruime ervaring met Angular.",
+        subtitle: "Example CSV upload functionality",
     },
 ];
 
@@ -82,13 +82,13 @@ export interface ProjectCard {
     content: Content;
 }
 
-class Home extends Component<Props> {
+class Home extends React.PureComponent<Props> {
 
     public render() {
         const {classes} = this.props;
 
         const cards = CONTENT.map((content) =>
-            <ProjectCard content={content}/>,
+            <ProjectCard key={content.id} content={content}/>,
         );
 
         return (

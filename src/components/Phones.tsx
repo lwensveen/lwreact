@@ -1,4 +1,4 @@
-import { Theme, withStyles } from "@material-ui/core/styles";
+import {Theme, withStyles} from "@material-ui/core/styles";
 import React from "react";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -9,10 +9,10 @@ import CardHeader from "@material-ui/core/CardHeader";
 import red from "@material-ui/core/colors/red";
 import Typography from "@material-ui/core/Typography";
 
-import { Button } from "@material-ui/core";
+import {Button} from "@material-ui/core";
 
 import Box from "@material-ui/core/Box";
-import { PhonesInterface } from "../mocks/phones";
+import {PhonesInterface} from "../mocks/phones";
 import "./Phones.scss";
 
 interface Props {

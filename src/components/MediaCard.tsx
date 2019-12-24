@@ -1,4 +1,4 @@
-import { CardActionArea, makeStyles } from "@material-ui/core";
+import {CardActionArea, makeStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -28,7 +28,7 @@ export default function MediaCard() {
                     title="Contemplative Reptile"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom={true} variant="h5" component="h2">
                         Lizard
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">

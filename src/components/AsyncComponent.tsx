@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 interface Props {
     component: any;
@@ -9,7 +9,7 @@ interface State {
 }
 
 export default function asyncComponent(importComponent: any) {
-    class AsyncComponent extends Component<Props, State> {
+    class AsyncComponent extends React.PureComponent<Props, State> {
         constructor(props: any) {
             super(props);
 
@@ -19,7 +19,7 @@ export default function asyncComponent(importComponent: any) {
         }
 
         public async componentDidMount() {
-            const { default: component } = await importComponent();
+            const {default: component} = await importComponent();
 
             this.setState({
                 component,
