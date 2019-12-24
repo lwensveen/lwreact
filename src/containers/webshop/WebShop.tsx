@@ -1,11 +1,5 @@
-import React, { Component } from "react";
-import "./Webshop.scss";
-
-/* tslint:disable */
-import Box from '@material-ui/core/Box';
-/* tslint:enable */
-
 import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -14,8 +8,10 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
+import React, { Component } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import ProjectCard from "../../components/ProjectCard";
+import MediaCard from "../../components/MediaCard";
+import "./Webshop.scss";
 
 class WebShop extends Component<RouteComponentProps> {
 
@@ -104,10 +100,10 @@ class WebShop extends Component<RouteComponentProps> {
                     </List>
                 </Box>
 
-                <Box className="promo-section" display="flex" flexDirection="row" justifyContent="center">
-                    <ProjectCard/>
-                    <ProjectCard/>
-                    <ProjectCard/>
+                <Box className="promo-section" display="flex" flexDirection="row" justifyContent="space-evenly">
+                    <MediaCard/>
+                    <MediaCard/>
+                    <MediaCard/>
                 </Box>
             </React.Fragment>
         );
