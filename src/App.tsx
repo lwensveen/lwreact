@@ -17,6 +17,9 @@ const theme = createMuiTheme({
         },
     },
     typography: {
+        fontWeightLight: 300,
+        fontWeightMedium: 300,
+        fontWeightRegular: 300,
     },
 });
 
