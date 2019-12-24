@@ -29,6 +29,11 @@ const options = [
 ];
 
 const styles = createStyles({
+    appBar: {
+        backgroundColor: "#fff",
+        color: "#000",
+        boxShadow: "none",
+    },
     root: {
         flexGrow: 1,
     },
@@ -70,7 +75,7 @@ class Header extends Component<Props> {
         ));
 
         return (
-            <AppBar position="static">
+            <AppBar className={classes.appBar} position="static">
                 <Toolbar>
                     <Typography className={classes.title} variant="h6">
                         LWReact
