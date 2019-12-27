@@ -1,13 +1,14 @@
-import {CardContent} from "@material-ui/core";
+import { CardContent } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import React from "react";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import CSVTable from "../../components/CSVTable";
 import FileInput from "../../components/FileInput";
-import {Person} from "../../models/Person";
+import { Person } from "../../models/Person";
 import "../Home.css";
+import "./CSVUpload.scss";
 
 interface Props extends RouteComponentProps<any> {
     classes: any;
@@ -92,7 +93,7 @@ class CSVUpload extends React.PureComponent<Props, State> {
 
     public render() {
         return (
-            <Box height="100%" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
+            <Box className={"csv-upload"} height="100%" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
                 <Card>
                     <CardHeader title="CSV upload"/>
                     <CardContent>

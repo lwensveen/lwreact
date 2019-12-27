@@ -1,21 +1,32 @@
-import { ExpansionPanelDetails } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
-import Checkbox from "@material-ui/core/Checkbox";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
+import {
+    Box,
+    Checkbox,
+    Container,
+    createStyles,
+    ExpansionPanel,
+    ExpansionPanelDetails,
+    ExpansionPanelSummary,
+    FormControlLabel,
+    FormGroup,
+    Toolbar,
+    Typography,
+    withStyles,
+} from "@material-ui/core";
+
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import "./Shop.scss";
 
+import Phones from "../../../components/Phones";
 import { Brands, BRANDS } from "../../../mocks/brands";
 import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
 import { PHONES, PhonesInterface } from "../../../mocks/phones";
 
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import Phones from "../../../components/Phones";
+import "./Shop.scss";
+
+interface Props extends RouteComponentProps<any> {
+    classes: any;
+}
 
 interface State {
     brands: Brands[];
@@ -24,9 +35,20 @@ interface State {
     phones: PhonesInterface[];
 }
 
-class Shop extends React.PureComponent<RouteComponentProps, State> {
+const styles = createStyles({
+    root: {
+        backgroundColor: "#5199FF",
+        height: "100%",
+    },
+    toolbar: {
+        backgroundColor: "#fff",
+        marginBottom: "20px",
+    },
+});
 
-    constructor(props: RouteComponentProps) {
+class Shop extends React.PureComponent<Props, State> {
+
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -74,6 +96,7 @@ class Shop extends React.PureComponent<RouteComponentProps, State> {
     }
 
     public render() {
+        const {classes} = this.props;
 
         const brands = this.state.brands.map((brand) =>
             <FormControlLabel
@@ -106,19 +129,22 @@ class Shop extends React.PureComponent<RouteComponentProps, State> {
         );
 
         return (
-            <Box display="flex" flexDirection="row" justifyContent="space-around">
-                <Box display="flex" flexDirection="column">
+            <div className={"test"}>
+                <Container>
                     <Box alignSelf="center">
-                        <h1 className="banner-header">
-                            Alle telefoons
-                        </h1>
-                        <p>Hier vindt u alle telefoons</p>
+                        <Toolbar className={classes.toolbar}>
+                            <Typography variant="h6" className="banner-header">
+                                Alle telefoons
+                            </Typography>
+                        </Toolbar>
                     </Box>
 
-                    <Box display="flex" flexDirection="row">
+                    <Box display="flex" flexDirection="row" justifyContent="space-between">
 
                         <Box display="flex" flexDirection="column">
-                            <h2>Filters</h2>
+                            <Toolbar className={classes.toolbar}>
+                                <Typography variant="h6">Filters</Typography>
+                            </Toolbar>
 
                             <ExpansionPanel>
                                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
@@ -142,17 +168,18 @@ class Shop extends React.PureComponent<RouteComponentProps, State> {
                         </Box>
 
                         <Box display="flex" flexDirection="column">
-                            <h2>Telefoons</h2>
+                            <Toolbar className={classes.toolbar}>
+                                <Typography variant="h6">Telefoons</Typography>
+                            </Toolbar>
                             <Box display="flex" flexDirection="row">
                                 <Phones phones={this.state.phones}/>
                             </Box>
                         </Box>
                     </Box>
-                </Box>
-
-            </Box>
+                </Container>
+            </div>
         );
     }
 }
 
-export default withRouter(Shop);
+export default withRouter(withStyles(styles)(Shop));

@@ -23,6 +23,7 @@ export default function MediaCard() {
         <Card className={classes.card}>
             <CardActionArea>
                 <CardMedia
+                    component="img"
                     className={classes.media}
                     image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
                     title="Contemplative Reptile"

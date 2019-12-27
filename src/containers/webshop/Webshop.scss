@@ -9,13 +9,23 @@
 
 .banner {
     background-color: #000;
+    height: 500px;
 
     .banner-header {
         color: #fff;
     }
 }
 
+.content {
+    .MuiList-root {
+        padding: 0 1%;
+
+        .MuiAvatar-root {
+            margin-right: 20px;
+        }
+    }
+}
+
 .promo-section {
     background-color: grey;
-    padding: 20px 0;
 }

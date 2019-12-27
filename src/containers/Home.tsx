@@ -17,7 +17,6 @@ interface Props extends RouteComponentProps<any> {
 const styles = createStyles({
     root: {
         backgroundColor: "#5199FF",
-        height: "100%",
     },
     toolbar: {
         backgroundColor: "#fff",
@@ -93,7 +92,7 @@ class Home extends React.PureComponent<Props> {
         );
 
         return (
-            <div className={classes.root}>
+            <Box className={classes.root} height="100%" display="flex" flexDirection="row" justifyContent="center" alignItems="start">
                 <Container>
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h6" className={classes.title}>
@@ -104,7 +103,7 @@ class Home extends React.PureComponent<Props> {
                         {cards}
                     </Box>
                 </Container>
-            </div>
+            </Box>
         );
     }
 }
