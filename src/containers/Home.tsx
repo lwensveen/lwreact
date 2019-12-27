@@ -17,6 +17,7 @@ interface Props extends RouteComponentProps<any> {
 const styles = createStyles({
     root: {
         backgroundColor: "#5199FF",
+        height: "100%",
     },
     toolbar: {
         backgroundColor: "#fff",
