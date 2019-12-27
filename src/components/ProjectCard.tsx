@@ -34,13 +34,13 @@ class ProjectCard extends React.PureComponent<Props> {
         return (
             <Card className={classes.card}>
                 <CardHeader
-                    title={content!.title}
-                    subheader={content!.subtitle}
+                    title={content?.title}
+                    subheader={content?.subtitle}
                 />
                 <CardMedia
                     component="img"
                     image="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                    title="Paella dish"
+                    title={content?.title}
                 />
                 <CardContent>
                     <Typography component="p">
@@ -49,8 +49,8 @@ class ProjectCard extends React.PureComponent<Props> {
                     </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableSpacing={true}>
-                    <Button href={content!.url} variant={"contained"} color={"primary"} disableElevation={true}>
-                        {content!.title}
+                    <Button href={content?.url} variant={"contained"} color={"primary"} disableElevation={true}>
+                        {content?.title}
                     </Button>
                 </CardActions>
             </Card>
