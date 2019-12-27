@@ -1,4 +1,4 @@
-import {createStyles} from "@material-ui/core";
+import { createStyles } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
@@ -6,9 +6,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
-import {withStyles} from "@material-ui/styles";
-import React, {PureComponent} from "react";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
+import React, { PureComponent } from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import "./Header.scss";
 
 interface Props extends RouteComponentProps<any> {
@@ -78,7 +78,7 @@ class Header extends PureComponent<Props> {
             <AppBar className={classes.appBar} position="static">
                 <Toolbar>
                     <Typography className={classes.title} variant="h6">
-                        LWReact
+                        <a href="/">LWReact</a>
                     </Typography>
                     <IconButton onClick={this.handleClick} edge="start" color="inherit" aria-label="menu">
                         <MenuIcon/>
