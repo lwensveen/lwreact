@@ -18,8 +18,8 @@ interface Props extends RouteComponentProps<any> {
 const options = [
     {
         id: 1,
-        title: "lodewijkwensveen@gmail.com",
-        url: "lodewijkwensveen@gmail.com",
+        title: "lodewijkwensveen@protonmail.com",
+        url: "lodewijkwensveen@protonmail.com",
     },
     {
         id: 2,
