@@ -17,7 +17,9 @@ body {
 }
 
 #root {
-  height: calc(100% - 64px - 50px);
+  display: flex;
+  flex-direction: column;
+  flex: 1; 
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,4 +33,10 @@ code {
 
 .MuiContainer-root {
   padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.img-responsive {
+  height: auto;
+  width: 100%;
 }
