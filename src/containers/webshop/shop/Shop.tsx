@@ -20,7 +20,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import Phones from "../../../components/Phones";
 import { Brands, BRANDS } from "../../../mocks/brands";
 import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
-import { PHONES, PhonesInterface } from "../../../mocks/phones";
+import { PHONES, Phones as PhonesInterface } from "../../../mocks/phones";
 
 import "./Shop.scss";
 
@@ -55,8 +55,14 @@ class Shop extends React.PureComponent<Props, State> {
             brands: BRANDS,
             checked: undefined,
             os: OPERATINGSYSTEM,
-            phones: PHONES,
+            phones: [],
         };
+    }
+
+    public componentDidMount() {
+        fetch("http://localhost:5000/api/phones")
+            .then((response) => response.json())
+            .then((phones) => this.setState({ phones }));
     }
 
     public handleBrands = (name: string) => (evt: any) => {

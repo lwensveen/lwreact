@@ -20,14 +20,8 @@ class WebShop extends React.PureComponent<RouteComponentProps> {
 
         return (
             <React.Fragment>
-                <Box className="banner" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-                    <Container>
-                        <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-                            <h2 className="banner-header">
-                                Test
-                            </h2>
-                        </Box>
-                    </Container>
+                <Box className="banner">
+                    <img className="img-responsive" src="http://localhost:5000/images/webshop/banner.jpg" alt="Banner"/>
                 </Box>
 
                 <Box className="content">

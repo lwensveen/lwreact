@@ -93,7 +93,7 @@ class CSVUpload extends React.PureComponent<Props, State> {
 
     public render() {
         return (
-            <Box className={"csv-upload"} height="100%" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
+            <Box className={"csv-upload"} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
                 <Card>
                     <CardHeader title="CSV upload"/>
                     <CardContent>

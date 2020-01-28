@@ -92,7 +92,7 @@ class Home extends React.PureComponent<Props> {
         );
 
         return (
-            <Box className={classes.root} height="100%" display="flex" flexDirection="row" justifyContent="center" alignItems="start">
+            <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="start">
                 <Container>
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h6" className={classes.title}>

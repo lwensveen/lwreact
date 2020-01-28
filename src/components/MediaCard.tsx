@@ -39,7 +39,7 @@ export default function MediaCard() {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button href="webshop/shop" size="small" color="primary">
                     Share
                 </Button>
                 <Button size="small" color="primary">

@@ -1,4 +1,4 @@
-export interface PhonesInterface {
+export interface Phones {
     id: number;
     title: string;
     subtitle: string | null;
@@ -18,7 +18,7 @@ export interface Colors {
     color: string;
 }
 
-export const PHONES: PhonesInterface[] = [
+export const PHONES: Phones[] = [
     {
         id: 1,
         title: "Samsung Galaxy S10",
