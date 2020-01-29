@@ -10,41 +10,50 @@ import {
     FormGroup,
     Toolbar,
     Typography,
-    withStyles,
+    WithStyles,
 } from "@material-ui/core";
 
+import withStyles from "@material-ui/core/styles/withStyles";
+
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import React from "react";
+import React, { ReactElement } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
-import Phones from "../../../components/Phones";
+import Phones from "../../../components/phones/Phones";
 import { Brands, BRANDS } from "../../../mocks/brands";
 import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
-import { PHONES, Phones as PhonesInterface } from "../../../mocks/phones";
+import { Phone as PhoneInterface } from "../../../mocks/phones";
 
-import "./Shop.scss";
+const styles = createStyles({
+    root: {
+        backgroundColor: "#6d9cbe",
+    },
+    toolbar: {
+        backgroundColor: "#fff",
+        marginBottom: "20px",
+    },
+    filters: {
+        marginRight: "20px",
+    }
+});
 
-interface Props extends RouteComponentProps<any> {
-    classes: any;
+interface Props extends WithStyles<typeof styles>, RouteComponentProps<any> {
+    classes: {
+        root: string;
+        filters: string;
+        toolbar: string;
+    };
 }
 
 interface State {
     brands: Brands[];
     checked: undefined;
     os: OperatingSystem[];
-    phones: PhonesInterface[];
+    phones: PhoneInterface[];
+    filterBrands: string[];
+    filterOS: string[];
+    filterUrl: any;
 }
-
-const styles = createStyles({
-    root: {
-        backgroundColor: "#5199FF",
-        height: "100%",
-    },
-    toolbar: {
-        backgroundColor: "#fff",
-        marginBottom: "20px",
-    },
-});
 
 class Shop extends React.PureComponent<Props, State> {
 
@@ -56,52 +65,55 @@ class Shop extends React.PureComponent<Props, State> {
             checked: undefined,
             os: OPERATINGSYSTEM,
             phones: [],
+            filterUrl: '',
+            filterBrands: [],
+            filterOS: []
         };
     }
 
-    public componentDidMount() {
+    public componentDidMount(): void {
         fetch("http://localhost:5000/api/phones")
             .then((response) => response.json())
-            .then((phones) => this.setState({ phones }));
+            .then((phones: PhoneInterface[]) => {
+                this.setState({phones: [...phones]});
+            });
     }
 
     public handleBrands = (name: string) => (evt: any) => {
 
-        if (evt.target.checked) {
-            const filtered = this.state.phones.filter((phone) => phone.brand === name);
+        console.log(name);
 
-            this.setState(
-                {
-                    phones: filtered,
-                },
-            );
-            return;
+        if (evt.target.checked) {
+            this.setState({
+                filterBrands: [name]
+            });
+            return
         }
 
         this.setState({
-            phones: [...PHONES],
+            filterBrands: []
         });
+    };
+
+    public fixUrl(url: string): string {
+        return url.replace(/\s/g, '');
     }
 
     public handleOS = (name: string) => (evt: any) => {
 
         if (evt.target.checked) {
-            const filtered = this.state.phones.filter((phone) => phone.os === name);
-
-            this.setState(
-                {
-                    phones: filtered,
-                },
-            );
-            return;
+            this.setState({
+                filterOS: [name]
+            });
+            return
         }
 
         this.setState({
-            phones: [...PHONES],
+            filterOS: []
         });
-    }
+    };
 
-    public render() {
+    public render(): ReactElement {
         const {classes} = this.props;
 
         const brands = this.state.brands.map((brand) =>
@@ -134,8 +146,15 @@ class Shop extends React.PureComponent<Props, State> {
             />,
         );
 
+        const phones = this.state.filterBrands.length || this.state.filterOS.length ?
+            this.state.phones.filter(phone => {
+                return this.state.filterOS.indexOf(phone.os) !== -1 && this.state.filterBrands.indexOf(phone.brand) !== -1;
+            }) : this.state.phones;
+
+        console.log(phones);
+
         return (
-            <div className={"test"}>
+            <div className={classes.root}>
                 <Container>
                     <Box alignSelf="center">
                         <Toolbar className={classes.toolbar}>
@@ -145,9 +164,9 @@ class Shop extends React.PureComponent<Props, State> {
                         </Toolbar>
                     </Box>
 
-                    <Box display="flex" flexDirection="row" justifyContent="space-between">
+                    <Box display="flex" flexDirection="row">
 
-                        <Box display="flex" flexDirection="column">
+                        <Box className={classes.filters} display="flex" flexDirection="column">
                             <Toolbar className={classes.toolbar}>
                                 <Typography variant="h6">Filters</Typography>
                             </Toolbar>
@@ -173,12 +192,12 @@ class Shop extends React.PureComponent<Props, State> {
                             </ExpansionPanel>
                         </Box>
 
-                        <Box display="flex" flexDirection="column">
+                        <Box display="flex" flex="1" flexDirection="column">
                             <Toolbar className={classes.toolbar}>
                                 <Typography variant="h6">Telefoons</Typography>
                             </Toolbar>
                             <Box display="flex" flexDirection="row">
-                                <Phones phones={this.state.phones}/>
+                                <Phones phones={phones} fixUrl={this.fixUrl}/>
                             </Box>
                         </Box>
                     </Box>
