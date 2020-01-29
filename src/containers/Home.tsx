@@ -1,18 +1,13 @@
-import {createStyles} from "@material-ui/core";
+import { createStyles, WithStyles } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import "./Home.css";
-
-interface Props extends RouteComponentProps<any> {
-    classes: any;
-    content?: Content;
-}
 
 const styles = createStyles({
     root: {
@@ -22,6 +17,14 @@ const styles = createStyles({
         backgroundColor: "#fff",
     },
 });
+
+interface Props extends WithStyles<typeof styles>, RouteComponentProps<any> {
+    classes: {
+        root: string;
+        toolbar: string;
+    };
+    content?: Content;
+}
 
 export interface Content {
     id: number;
@@ -95,7 +98,7 @@ class Home extends React.PureComponent<Props> {
             <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="start">
                 <Container>
                     <Toolbar className={classes.toolbar}>
-                        <Typography variant="h6" className={classes.title}>
+                        <Typography variant="h6">
                             My React Projects
                         </Typography>
                     </Toolbar>
