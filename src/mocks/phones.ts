@@ -1,13 +1,19 @@
-export interface Phones {
+export interface Phone {
     id: number;
     title: string;
     subtitle: string | null;
     brand: string;
     os: string;
-    img: string;
+    images: ImageSides;
     colors: Colors[];
     bulletpoints: Bulletpoints[];
     content: string;
+}
+
+export interface ImageSides {
+    front: string;
+    side: string;
+    back: string;
 }
 
 export interface Bulletpoints {
@@ -18,14 +24,18 @@ export interface Colors {
     color: string;
 }
 
-export const PHONES: Phones[] = [
+export const PHONES: Phone[] = [
     {
         id: 1,
         title: "Samsung Galaxy S10",
         subtitle: "128GB",
         brand: "Samsung",
         os: "Android",
-        img: "/webshop/dvi-front_Samsung_S10_Blue_305x450.png",
+        images: {
+            front: "/webshop/dvi-front_Samsung_S10_Blue_305x450.png",
+            side: '',
+            back: '',
+        },
         colors: [
             {
                 color: "red",
@@ -53,8 +63,11 @@ export const PHONES: Phones[] = [
         subtitle: "64GB",
         brand: "Apple",
         os: "iOS",
-        img: "/webshop/dvi-front_iPhone_Xs_Gold_305x450.png",
-        colors: [
+        images: {
+            front: "/webshop/dvi-front_Samsung_S10_Blue_305x450.png",
+            side: '',
+            back: '',
+        }, colors: [
             {
                 color: "red",
             },
@@ -81,8 +94,11 @@ export const PHONES: Phones[] = [
         subtitle: "128GB",
         brand: "Samsung",
         os: "Android",
-        img: "/webshop/dvi-front_Samsung_S10_Blue_305x450.png",
-        colors: [
+        images: {
+            front: "/webshop/dvi-front_Samsung_S10_Blue_305x450.png",
+            side: '',
+            back: '',
+        }, colors: [
             {
                 color: "red",
             },
