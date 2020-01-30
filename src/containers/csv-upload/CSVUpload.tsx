@@ -2,9 +2,9 @@ import { CardContent } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import React from "react";
+import React, { ReactElement } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import CSVTable from "../../components/CSVTable";
+import CSVTable from "../../components/CSV/CSVTable";
 import FileInput from "../../components/FileInput";
 import { Person } from "../../models/Person";
 import "../Home.css";
@@ -26,7 +26,7 @@ class CSVUpload extends React.PureComponent<Props, State> {
     public person: string[] = [];
     public persons: Person[] = [];
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -35,93 +35,73 @@ class CSVUpload extends React.PureComponent<Props, State> {
         };
     }
 
-    public handleChange = (event: any) => {
-        event.preventDefault();
-        const files = event.target.files;
+    handleChange = (evt: any) => {
+        const files = evt.target.files;
         const file = files[0];
         const reader = new FileReader();
 
         reader.readAsText(file);
 
-        reader.onload = () => {
+        reader.onload = (): void => {
             const csv = reader.result;
-            const data = this.extractData(csv);
-
-            this.setState({
-                headers: [...data.headers],
-                persons: [...data.persons],
-            });
+            this.extractData(csv);
         };
-    }
+    };
 
-    public orderBy = (event: any) => {
-        event.preventDefault();
-
+    orderBy = (): void => {
         this.setState({
             persons: [...this.state.persons.reverse()],
         });
+    };
+
+    replaceQuotes(text: string[]): string[] {
+        return text.map((column) => column.replace(/"/g, ""));
     }
 
-    // filterBy(filterProp) {
-    //     this.persons.filter(person => {
-    //         return person.issueCount === props;
-    //     });
-    // }
-
-    public extractData(data: any) {
+    extractData(data: any): void {
         const allTextLines = data.split(/\r\n|\n/);
 
-        allTextLines.slice(1).map((line: string) => {
-            this.headers = replaceQuotes(allTextLines[0].split(","));
-            this.person = replaceQuotes(line.split(","));
+        allTextLines.slice(1).forEach((line: string) => {
+            this.headers = this.replaceQuotes(allTextLines[0].split(","));
+            this.person = this.replaceQuotes(line.split(","));
 
-            return this.persons.push({
-                dateOfBirth: new Date(this.person[3]).toLocaleDateString(),
-                firstName: this.person[0],
-                issueCount: parseInt(this.person[2], 10),
-                surname: this.person[1],
+            this.setState({
+                headers: [...this.headers],
+                persons: [...this.state.persons, {
+                    dateOfBirth: new Date(this.person[3]).toLocaleDateString(),
+                    firstName: this.person[0],
+                    issueCount: parseInt(this.person[2], 10),
+                    surname: this.person[1],
+                }]
             });
         });
 
-        this.persons.sort((a, b) => a.issueCount > b.issueCount ? 1 : -1);
-
-        return {
-            headers: this.headers,
-            persons: this.persons,
-        };
+        this.setState({
+            persons: [...this.state.persons.sort((a, b) => a.issueCount > b.issueCount ? 1 : -1)],
+        });
     }
 
-    public render() {
+    public render(): ReactElement {
         return (
-            <Box className={"csv-upload"} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
+            <Box className={"csv-upload"} display="flex" flexDirection="row" justifyContent="center"
+                 alignItems="center">
                 <Card>
                     <CardHeader title="CSV upload"/>
                     <CardContent>
                         <FileInput
-                            onChange={this.buttonChanged}
+                            onChange={this.handleChange}
                         />
                         <CSVTable
                             headers={this.state.headers}
                             persons={this.state.persons}
-                            orderBy={this.buttonClicked}
+                            orderBy={this.orderBy}
                         />
                     </CardContent>
                 </Card>
             </Box>
         );
     }
-
-    private buttonChanged = (e: React.ChangeEvent) => {
-        this.handleChange(e);
-    }
-
-    private buttonClicked = (e: React.ChangeEvent) => {
-        this.orderBy(e);
-    }
 }
 
-function replaceQuotes(text: string[]): string[] {
-    return text.map((column) => column.replace(/"/g, ""));
-}
 
 export default withRouter(CSVUpload);
