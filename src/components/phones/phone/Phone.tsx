@@ -1,15 +1,20 @@
 import React, { ReactElement } from "react";
 import { Box, Card, CardContent, CardHeader, Typography } from "@material-ui/core";
+import { Phone as PhoneInterface } from "../../../mocks/phones";
 
-export default function Phone(props: any): ReactElement {
-    console.log(props)
+interface Props {
+    phone: PhoneInterface;
+    fixUrl(url: string): string;
+}
+
+export default function Phone(props: Props): ReactElement {
     return (
         <a href={'/examples/webshop/shop/product/' + props.fixUrl(props.phone.brand + props.phone.model) + '/' + props.phone.id}>
             <Card className="phone-card">
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <CardHeader/>
 
-                    <img src={props.phone.images.front} alt={props.phone.phonetitle}/>
+                    <img src={props.phone.images.front} alt={props.phone.brand + props.phone.model}/>
 
                     {/*{props.phone.phonecolors.map(((color) => <Chip color={color.color}>{color.color}</Chip>))}*/}
 
