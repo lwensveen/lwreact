@@ -81,11 +81,9 @@ class Shop extends React.PureComponent<Props, State> {
 
     public handleBrands = (name: string) => (evt: any) => {
 
-        console.log(name);
-
         if (evt.target.checked) {
             this.setState({
-                filterBrands: [name]
+                filterBrands: [...this.state.filterBrands, name]
             });
             return
         }
@@ -103,7 +101,7 @@ class Shop extends React.PureComponent<Props, State> {
 
         if (evt.target.checked) {
             this.setState({
-                filterOS: [name]
+                filterOS: [...this.state.filterOS, name]
             });
             return
         }
@@ -116,42 +114,10 @@ class Shop extends React.PureComponent<Props, State> {
     public render(): ReactElement {
         const {classes} = this.props;
 
-        const brands = this.state.brands.map((brand) =>
-            <FormControlLabel
-                key={brand.id}
-                /* tslint:disable-next-line:jsx-no-multiline-js */
-                control={
-                    <Checkbox
-                        checked={this.state.checked}
-                        onChange={this.handleBrands(brand.name)}
-                        value={brand.name}
-                    />
-                }
-                label={brand.name}
-            />,
-        );
-
-        const os = this.state.os.map((os) =>
-            <FormControlLabel
-                key={os.id}
-                /* tslint:disable-next-line:jsx-no-multiline-js */
-                control={
-                    <Checkbox
-                        checked={this.state.checked}
-                        onChange={this.handleOS(os.name)}
-                        value={os.name}
-                    />
-                }
-                label={os.name}
-            />,
-        );
-
         const phones = this.state.filterBrands.length || this.state.filterOS.length ?
             this.state.phones.filter(phone => {
-                return this.state.filterOS.indexOf(phone.os) !== -1 && this.state.filterBrands.indexOf(phone.brand) !== -1;
+                return this.state.filterOS.indexOf(phone.os) !== -1 || this.state.filterBrands.indexOf(phone.brand) !== -1;
             }) : this.state.phones;
-
-        console.log(phones);
 
         return (
             <div className={classes.root}>
@@ -177,7 +143,20 @@ class Shop extends React.PureComponent<Props, State> {
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                     <FormGroup>
-                                        {brands}
+                                        {this.state.brands.map((brand) =>
+                                            <FormControlLabel
+                                                key={brand.id}
+                                                /* tslint:disable-next-line:jsx-no-multiline-js */
+                                                control={
+                                                    <Checkbox
+                                                        checked={this.state.checked}
+                                                        onChange={this.handleBrands(brand.name)}
+                                                        value={brand.name}
+                                                    />
+                                                }
+                                                label={brand.name}
+                                            />,
+                                        )}
                                     </FormGroup>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
@@ -187,7 +166,20 @@ class Shop extends React.PureComponent<Props, State> {
                                     <Typography>Besturingssysteem</Typography>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
-                                    {os}
+                                    {this.state.os.map((os) =>
+                                        <FormControlLabel
+                                            key={os.id}
+                                            /* tslint:disable-next-line:jsx-no-multiline-js */
+                                            control={
+                                                <Checkbox
+                                                    checked={this.state.checked}
+                                                    onChange={this.handleOS(os.name)}
+                                                    value={os.name}
+                                                />
+                                            }
+                                            label={os.name}
+                                        />,
+                                    )}
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
                         </Box>
