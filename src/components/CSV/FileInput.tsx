@@ -1,13 +1,13 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 interface Props {
     onChange: any;
 }
 
 class FileInput extends React.PureComponent<Props> {
-    public fileInput!: React.RefObject<any>;
+    fileInput = React.createRef<HTMLInputElement>();
 
-    public render() {
+    public render(): ReactElement {
         return (
             <input type="file" onChange={this.props.onChange} ref={this.fileInput}/>
         );
