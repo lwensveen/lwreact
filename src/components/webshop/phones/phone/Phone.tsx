@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { Box, Card, CardContent, CardHeader, Typography } from "@material-ui/core";
-import { Phone as PhoneInterface } from "../../../mocks/phones";
+import { Phone as PhoneInterface } from "../../../../mocks/phones";
 
 interface Props {
     phone: PhoneInterface;

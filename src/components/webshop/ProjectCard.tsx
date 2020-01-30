@@ -7,7 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { Content } from "../containers/Home";
+import { Content } from "../../containers/Home";
 
 interface Props {
     classes: any;

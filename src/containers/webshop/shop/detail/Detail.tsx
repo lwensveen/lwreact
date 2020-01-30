@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Box, Container, Toolbar } from "@material-ui/core";
 
-export default function Detail(props: any): ReactElement {
+export default function Detail(): ReactElement {
     return (
         <Container>
             <Toolbar>Bla</Toolbar>

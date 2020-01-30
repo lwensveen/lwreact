@@ -7,7 +7,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import { withStyles } from "@material-ui/styles";
-import React, { PureComponent } from "react";
+import React, { PureComponent, ReactElement } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import "./Header.scss";
 
@@ -51,28 +51,22 @@ class Header extends PureComponent<Props> {
         anchorEl: null,
     };
 
-    public componentDidMount() {
+    public componentDidMount(): void {
         window.scrollTo(0, 0);
     }
 
     public handleClick = (event: any) => {
         this.setState({anchorEl: event.currentTarget});
-    }
+    };
 
     public handleClose = () => {
         this.setState({anchorEl: null});
-    }
+    };
 
-    public render() {
+    public render(): ReactElement {
         const {anchorEl} = this.state;
         const open = Boolean(anchorEl);
         const {classes} = this.props;
-
-        const menuItems = options.map((option) => (
-            <MenuItem key={option.id} onClick={this.handleClose}>
-                <a href={option.url}>{option.title}</a>
-            </MenuItem>
-        ));
 
         return (
             <AppBar className={classes.appBar} position="static">
@@ -89,7 +83,11 @@ class Header extends PureComponent<Props> {
                         open={open}
                         onClose={this.handleClose}
                     >
-                        {menuItems}
+                        {options.map((option) => (
+                            <MenuItem key={option.id} onClick={() => this.handleClose}>
+                                <a href={option.url}>{option.title}</a>
+                            </MenuItem>
+                        ))}
                     </Menu>
                 </Toolbar>
             </AppBar>

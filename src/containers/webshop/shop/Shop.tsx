@@ -19,7 +19,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React, { ReactElement } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
-import Phones from "../../../components/phones/Phones";
+import Phones from "../../../components/webshop/phones/Phones";
 import { Brands, BRANDS } from "../../../mocks/brands";
 import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
 import { Phone as PhoneInterface } from "../../../mocks/phones";

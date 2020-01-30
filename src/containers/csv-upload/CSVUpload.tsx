@@ -5,7 +5,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import React, { ReactElement } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import CSVTable from "../../components/CSV/CSVTable";
-import FileInput from "../../components/FileInput";
+import FileInput from "../../components/CSV/FileInput";
 import { Person } from "../../models/Person";
 import "../Home.css";
 import "./CSVUpload.scss";

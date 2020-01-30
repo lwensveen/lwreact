@@ -6,7 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/webshop/ProjectCard";
 import "./Home.css";
 
 const styles = createStyles({

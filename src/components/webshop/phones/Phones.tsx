@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone as PhoneInterface } from "../../mocks/phones";
+import { Phone as PhoneInterface } from "../../../mocks/phones";
 import "./Phones.scss";
 import Phone from "./phone/Phone";
 
