@@ -1,20 +1,23 @@
-import React, { ReactElement } from "react";
+import React, { ChangeEvent, ReactElement } from "react";
 
-import {
-    Button,
-    createStyles,
-    Divider,
-    ExpansionPanel,
-    ExpansionPanelActions,
-    ExpansionPanelDetails,
-    ExpansionPanelSummary,
-    Theme,
-    Typography
-} from "@material-ui/core";
-
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { createStyles, Theme } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/styles";
+import Duration from "./Duration";
+import Minutes from "./Minutes";
+import Internet from "./Internet";
+
+export default interface Props {
+    expanded: string | boolean;
+    classes: any;
+    value: string;
+
+    handleChange(s: string): void;
+
+    handleClick(s: string): void;
+
+    handleRadioChange(event: ChangeEvent<HTMLInputElement>, s: string): void;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -31,6 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Steps(props: any): ReactElement {
     const classes = useStyles();
+
+    const [value, setValue] = React.useState('1 year');
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
     const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean): void => {
@@ -41,66 +46,33 @@ export default function Steps(props: any): ReactElement {
         setExpanded(panel);
     };
 
+    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setValue((event.target as HTMLInputElement).value);
+    };
+
     return (
         <div className={classes.root}>
-            <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <Typography className={classes.heading}>Expansion Panel 1</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
-                    </Typography>
-                </ExpansionPanelDetails>
-                <Divider/>
-                <ExpansionPanelActions>
-                    <Button size="small" color="primary" onClick={() => {
-                        handleClick('panel2')
-                    }}>
-                        Next
-                    </Button>
-                </ExpansionPanelActions>
-            </ExpansionPanel>
-            <ExpansionPanel expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
-                    <Typography className={classes.heading}>Expansion Panel 2</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
-                    </Typography>
-                </ExpansionPanelDetails>
-                <Divider/>
-                <ExpansionPanelActions>
-                    <Button size="small" onClick={() => {
-                        handleClick('panel1')
-                    }}>Previous</Button>
-                    <Button size="small" color="primary" onClick={() => {
-                        handleClick('panel3')
-                    }}>
-                        Next
-                    </Button>
-                </ExpansionPanelActions>
-            </ExpansionPanel>
-            <ExpansionPanel expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel3a-content"
-                    id="panel3a-header"
-                >
-                    <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
-                </ExpansionPanelSummary>
-            </ExpansionPanel>
+            <Duration classes={classes}
+                      expanded={expanded}
+                      value={value}
+                      handleChange={handleChange}
+                      handleClick={handleClick}
+                      handleRadioChange={handleRadioChange}
+            />
+            <Minutes classes={classes}
+                     expanded={expanded}
+                     value={value}
+                     handleChange={handleChange}
+                     handleClick={handleClick}
+                     handleRadioChange={handleRadioChange}
+            />
+            <Internet classes={classes}
+                      expanded={expanded}
+                      value={value}
+                      handleChange={handleChange}
+                      handleClick={handleClick}
+                      handleRadioChange={handleRadioChange}
+            />
         </div>
     )
 }

@@ -1,22 +1,23 @@
 import React, { ReactElement } from "react";
-import { Card } from "@material-ui/core";
-import Monthly from "./Monthly";
+import { Card, Radio } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import OneTime from "./OneTime";
 
 const useStyles = makeStyles({
     root: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
         marginTop: '20px',
     },
 });
 
-export default function Receipt(props: any): ReactElement {
+export default function Colors(props: any): ReactElement {
     const classes = useStyles();
 
     return (
         <Card className={classes.root}>
-            <Monthly/>
-            <OneTime/>
+            <Radio value="a"/>
+            <Radio value="b"/>
         </Card>
     )
 }

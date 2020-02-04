@@ -1,10 +1,11 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Box, Card, CircularProgress, Container, Radio, Toolbar } from "@material-ui/core";
+import { Box, CircularProgress, Container, Toolbar } from "@material-ui/core";
 import { Phone as PhoneInterface } from "../../../../mocks/phones";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import Steps from "../../../../components/webshop/steps/Steps";
 import Receipt from "../../../../components/webshop/receipt/Receipt";
+import Colors from "../../../../components/webshop/colors/Colors";
 
 
 const useStyles = makeStyles({
@@ -53,7 +54,7 @@ export default function Detail(): ReactElement {
         return (
             <Box className={classes.root}>
                 <Container>
-                    <Box display="flex" flexDirection="row">
+                    <Box display="flex" flexDirection="row" justifyContent="center">
 
                         <Box display="flex" flexDirection="column">
                             <Toolbar className={classes.toolbar}>{phone.brand} {phone.model}</Toolbar>
@@ -69,11 +70,7 @@ export default function Detail(): ReactElement {
                                 {/*<FlatButton><img src={phone.images.front} /></FlatButton>*/}
                             </div>
 
-                            <Card>
-                                <Radio value="a"/>
-                                <Radio value="b"/>
-                            </Card>
-
+                            <Colors/>
                             <Receipt/>
                         </Box>
                     </Box>

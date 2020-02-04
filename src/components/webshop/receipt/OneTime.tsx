@@ -1,24 +1,26 @@
 import React, { ReactElement } from "react";
-import { CardContent, CardHeader, Divider } from "@material-ui/core";
+import { Button, CardActions, CardContent, CardHeader, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
-    root: {
-        marginTop: '20px',
-    },
     row: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
+    },
+    actions: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
     }
 });
 
-export default function Monthly(): ReactElement {
+export default function OneTime(): ReactElement {
     const classes = useStyles();
 
     return (
         <>
-            <CardHeader title="Monthly"/>
+            <CardHeader title="One Time costs"/>
             <CardContent>
                 <div className={classes.row}>
                     <span>1 GB + 120 minutes</span>
@@ -28,11 +30,13 @@ export default function Monthly(): ReactElement {
             <Divider/>
             <CardContent>
                 <div className={classes.row}>
-                    <span>Total each month</span>
-                    <span>US$ 39,00</span>
+                    <span>Total one time costs</span>
+                    <span>US$ 30,69</span>
                 </div>
             </CardContent>
-            <Divider/>
+            <CardActions className={classes.actions}>
+                <Button variant="contained" color="primary" disableElevation>Next</Button>
+            </CardActions>
         </>
     )
 }
