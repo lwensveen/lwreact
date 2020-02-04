@@ -1,4 +1,3 @@
-import { createStyles } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
@@ -6,9 +5,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
-import { withStyles } from "@material-ui/styles";
-import React, { PureComponent, ReactElement } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import { makeStyles } from "@material-ui/styles";
+import React, { ReactElement, useState } from "react";
+import { Link, RouteComponentProps } from "react-router-dom";
 import "./Header.scss";
 
 interface Props extends RouteComponentProps<any> {
@@ -28,7 +27,7 @@ const options = [
     },
 ];
 
-const styles = createStyles({
+const useStyles = makeStyles({
     appBar: {
         backgroundColor: "#fff",
         boxShadow: "none",
@@ -45,54 +44,40 @@ const styles = createStyles({
     },
 });
 
-class Header extends PureComponent<Props> {
+export default function Header(): ReactElement {
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
 
-    public state = {
-        anchorEl: null,
+    const handleClick = (event: any) => {
+        setAnchorEl(event.currentTarget);
     };
 
-    public componentDidMount(): void {
-        window.scrollTo(0, 0);
-    }
-
-    public handleClick = (event: any) => {
-        this.setState({anchorEl: event.currentTarget});
+    const handleClose = () => {
+        setAnchorEl(null);
     };
 
-    public handleClose = () => {
-        this.setState({anchorEl: null});
-    };
-
-    public render(): ReactElement {
-        const {anchorEl} = this.state;
-        const open = Boolean(anchorEl);
-        const {classes} = this.props;
-
-        return (
-            <AppBar className={classes.appBar} position="static">
-                <Toolbar>
-                    <Typography className={classes.title} variant="h6">
-                        <a href="/">LWReact</a>
-                    </Typography>
-                    <IconButton onClick={this.handleClick} edge="start" color="inherit" aria-label="menu">
-                        <MenuIcon/>
-                    </IconButton>
-                    <Menu
-                        id="long-menu"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={this.handleClose}
-                    >
-                        {options.map((option) => (
-                            <MenuItem key={option.id} onClick={() => this.handleClose}>
-                                <a href={option.url}>{option.title}</a>
-                            </MenuItem>
-                        ))}
-                    </Menu>
-                </Toolbar>
-            </AppBar>
-        );
-    }
+    return (
+        <AppBar className={classes.appBar} position="static">
+            <Toolbar>
+                <Typography className={classes.title} variant="h6">
+                    <Link to="/">LWReact</Link>
+                </Typography>
+                <IconButton onClick={handleClick} edge="start" color="inherit" aria-label="menu">
+                    <MenuIcon/>
+                </IconButton>
+                <Menu
+                    id="long-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    {options.map((option) => (
+                        <MenuItem key={option.id} onClick={handleClose}>
+                            <a href={option.url}>{option.title}</a>
+                        </MenuItem>
+                    ))}
+                </Menu>
+            </Toolbar>
+        </AppBar>
+    );
 }
-
-export default withRouter(withStyles(styles)(Header));
