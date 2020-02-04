@@ -1,6 +1,6 @@
 import {blue, indigo} from "@material-ui/core/colors";
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
-import React from "react";
+import React, { ReactElement } from "react";
 
 import "./App.css";
 import Footer from "./layout/Footer";
@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 });
 
 class App extends React.PureComponent {
-    public render() {
+    public render(): ReactElement {
         return (
             <React.Fragment>
                 <Header/>
