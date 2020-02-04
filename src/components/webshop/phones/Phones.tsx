@@ -5,6 +5,7 @@ import Phone from "./phone/Phone";
 
 interface Props {
     phones: PhoneInterface[];
+
     fixUrl(url: string): string;
 }
 

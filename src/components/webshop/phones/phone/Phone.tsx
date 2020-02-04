@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 interface Props {
     phone: PhoneInterface;
+
     fixUrl(url: string): string;
 }
 

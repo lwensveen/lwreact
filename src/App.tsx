@@ -1,5 +1,5 @@
-import {blue, indigo} from "@material-ui/core/colors";
-import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
+import { blue, indigo } from "@material-ui/core/colors";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import React, { ReactElement } from "react";
 
 import "./App.css";

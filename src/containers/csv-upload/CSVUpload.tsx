@@ -12,8 +12,9 @@ import "./CSVUpload.scss";
 
 interface Props extends RouteComponentProps<any> {
     classes: any;
-    onChange(evt: MouseEvent): void;
     orderBy: any;
+
+    onChange(evt: MouseEvent): void;
 }
 
 interface State {

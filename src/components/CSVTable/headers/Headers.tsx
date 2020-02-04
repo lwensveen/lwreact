@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 
 interface Props {
     headers: string[];
+
     orderBy(): void;
 }
 

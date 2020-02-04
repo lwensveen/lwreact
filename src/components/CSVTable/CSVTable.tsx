@@ -6,6 +6,7 @@ import Headers from "./headers/Headers";
 interface Props {
     headers: string[];
     rows: any[];
+
     orderBy(): void;
 }
 
@@ -19,7 +20,7 @@ export default function CSVTable(props: Props): ReactElement | null {
                 </tr>
                 </thead>
                 <tbody>
-                    <Rows rows={props.rows}/>
+                <Rows rows={props.rows}/>
                 </tbody>
             </table>
         )
