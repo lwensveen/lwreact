@@ -5,7 +5,6 @@ interface Props {
 }
 
 export default function Rows(props: Props): ReactElement {
-    console.log('rows', props.rows);
     return (
         <>
             {props.rows.map((rows) =>

@@ -61,9 +61,6 @@ class CSVUpload extends React.PureComponent<Props, State> {
     extractData(data: any): void {
         const allTextLines = data.split(/\r\n|\n/);
 
-        console.log(data);
-        console.log(allTextLines);
-
         allTextLines.slice(1).forEach((line: string) => {
             this.headers = this.replaceQuotes(allTextLines[0].split(","));
             this.person = this.replaceQuotes(line.split(","));
