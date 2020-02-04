@@ -4,21 +4,21 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import React, { ReactElement } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import CSVTable from "../../components/CSV/CSVTable";
-import FileInput from "../../components/CSV/FileInput";
+import CSVTable from "../../components/CSVTable/CSVTable";
+import FileInput from "../../components/CSVTable/file-input/FileInput";
 import { Person } from "../../models/Person";
 import "../Home.css";
 import "./CSVUpload.scss";
 
 interface Props extends RouteComponentProps<any> {
     classes: any;
-    onChange: any;
+    onChange(evt: MouseEvent): void;
     orderBy: any;
 }
 
 interface State {
     headers: string[];
-    persons: Person[];
+    rows: any[];
 }
 
 class CSVUpload extends React.PureComponent<Props, State> {
@@ -31,7 +31,7 @@ class CSVUpload extends React.PureComponent<Props, State> {
 
         this.state = {
             headers: [],
-            persons: [],
+            rows: [],
         };
     }
 
@@ -50,7 +50,7 @@ class CSVUpload extends React.PureComponent<Props, State> {
 
     orderBy = (): void => {
         this.setState({
-            persons: [...this.state.persons.reverse()],
+            rows: [...this.state.rows.reverse()],
         });
     };
 
@@ -61,23 +61,22 @@ class CSVUpload extends React.PureComponent<Props, State> {
     extractData(data: any): void {
         const allTextLines = data.split(/\r\n|\n/);
 
+        console.log(data);
+        console.log(allTextLines);
+
         allTextLines.slice(1).forEach((line: string) => {
             this.headers = this.replaceQuotes(allTextLines[0].split(","));
             this.person = this.replaceQuotes(line.split(","));
 
             this.setState({
                 headers: [...this.headers],
-                persons: [...this.state.persons, {
+                rows: [...this.state.rows, {
                     dateOfBirth: new Date(this.person[3]).toLocaleDateString(),
                     firstName: this.person[0],
                     issueCount: parseInt(this.person[2], 10),
                     surname: this.person[1],
                 }]
             });
-        });
-
-        this.setState({
-            persons: [...this.state.persons.sort((a, b) => a.issueCount > b.issueCount ? 1 : -1)],
         });
     }
 
@@ -93,7 +92,7 @@ class CSVUpload extends React.PureComponent<Props, State> {
                         />
                         <CSVTable
                             headers={this.state.headers}
-                            persons={this.state.persons}
+                            rows={this.state.rows}
                             orderBy={this.orderBy}
                         />
                     </CardContent>
