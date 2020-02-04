@@ -15,7 +15,7 @@ export default () =>
         <Route path="/" exact={true} component={AsyncHome}/>
         <Route path="/examples/webshop" exact={true} component={AsyncWebShop}/>
         <Route path="/examples/webshop/shop" exact={true} component={AsyncShop}/>
-        <Route path="/examples/webshop/shop/product/:title/:id" exact={true} component={AsyncShopDetail}/>
+        <Route path="/examples/webshop/shop/product/:title/:id" component={AsyncShopDetail}/>
         <Route path="/examples/csv-upload" exact={true} component={AsyncCSVUpload}/>
         <Route component={NoMatch}/>
     </Switch>;
