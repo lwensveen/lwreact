@@ -10,7 +10,7 @@ export default function Headers(props: Props): ReactElement {
     return (
         <>
             {props.headers.map((propHeaders) =>
-                <th key={propHeaders + 1} onClick={() => props.orderBy()}>{propHeaders}</th>,
+                <th key={propHeaders + 1} onClick={props.orderBy}>{propHeaders}</th>,
             )}
         </>
     )
