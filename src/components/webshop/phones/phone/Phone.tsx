@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Box, Card, CardContent, CardHeader, CircularProgress, Typography } from "@material-ui/core";
+import { Box, Card, CardContent, CardHeader, Typography } from "@material-ui/core";
 import { Phone as PhoneInterface } from "../../../../mocks/phones";
 import { Link } from "react-router-dom";
 
@@ -9,32 +9,28 @@ interface Props {
     fixUrl(url: string): string;
 }
 
-export default function Phone(props: Props): ReactElement | null {
-    if (props.phone) {
-        return (
-            <Link
-                to={'/examples/webshop/shop/product/' + props.fixUrl(props.phone.brand + props.phone.model) + '/' + props.phone.id}>
-                <Card className="phone-card">
-                    <Box display="flex" flexDirection="column" alignItems="center">
-                        <CardHeader/>
+export default function Phone(props: Props): ReactElement {
+    return (
+        <Link to={'/examples/webshop/shop/product/' + props.fixUrl(props.phone.brand + props.phone.model) + '/' + props.phone.id}>
+            <Card className="phone-card">
+                <Box display="flex" flexDirection="column" alignItems="center">
+                    <CardHeader/>
 
-                        <img src={props.phone.images.front} alt={props.phone.brand + props.phone.model}/>
+                    <img src={props.phone.images.front} alt={props.phone.brand + props.phone.model}/>
 
-                        {/*{props.phone.phonecolors.map(((color) => <Chip color={color.color}>{color.color}</Chip>))}*/}
+                    {/*{props.phone.phonecolors.map(((color) => <Chip color={color.color}>{color.color}</Chip>))}*/}
 
-                        <CardContent>
-                            <CardHeader title={props.phone.brand} subheader={props.phone.model}/>
-                            <Typography variant="h4">
-                                € 46,50
-                            </Typography>
-                            <Typography component="p">
-                                Bijbetaling toestel € 59,00 excl. eenmalige kosten 5 GB + 120 min. bellen
-                            </Typography>
-                        </CardContent>
-                    </Box>
-                </Card>
-            </Link>
-        )
-    }
-    return <CircularProgress/>;
+                    <CardContent>
+                        <CardHeader title={props.phone.brand} subheader={props.phone.model}/>
+                        <Typography variant="h4">
+                            € 46,50
+                        </Typography>
+                        <Typography component="p">
+                            Bijbetaling toestel € 59,00 excl. eenmalige kosten 5 GB + 120 min. bellen
+                        </Typography>
+                    </CardContent>
+                </Box>
+            </Card>
+        </Link>
+    )
 }
