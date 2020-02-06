@@ -1,21 +1,32 @@
-import React from "react";
+import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from "react-router-dom";
 
-import asyncComponent from "./components/AsyncComponent";
-import NoMatch from "./components/404";
+import { CircularProgress, Container } from "@material-ui/core";
 
-const AsyncHome = asyncComponent(() => import("./containers/Home"));
-const AsyncWebShop = asyncComponent(() => import("./containers/webshop/WebShop"));
-const AsyncShop = asyncComponent(() => import("./containers/webshop/shop/Shop"));
-const AsyncShopDetail = asyncComponent(() => import("./containers/webshop/shop/detail/Detail"));
-const AsyncCSVUpload = asyncComponent(() => import("./containers/csv-upload/CSVUpload"));
+const Home = lazy(() => import("./containers/Home"));
+const WebShop = lazy(() => import("./containers/webshop/WebShop"));
+const Shop = lazy(() => import("./containers/webshop/shop/Shop"));
+const ShopDetail = lazy(() => import("./containers/webshop/shop/detail/Detail"));
+const ShoppingCart = lazy(() => import("./containers/webshop/shop/shoppingcart/ShoppingCart"));
+const CheckoutSteps = lazy(() => import("./containers/webshop/shop/checkout-steps/CheckoutSteps"));
+const CSVUpload = lazy(() => import("./containers/csv-upload/CSVUpload"));
+const NoMatch = lazy(() => import("./components/404"));
 
-export default () =>
-    <Switch>
-        <Route path="/" exact={true} component={AsyncHome}/>
-        <Route path="/examples/webshop" exact={true} component={AsyncWebShop}/>
-        <Route path="/examples/webshop/shop" exact={true} component={AsyncShop}/>
-        <Route path="/examples/webshop/shop/product/:title/:id" component={AsyncShopDetail}/>
-        <Route path="/examples/csv-upload" exact={true} component={AsyncCSVUpload}/>
-        <Route component={NoMatch}/>
-    </Switch>;
+const App = (): React.ReactElement =>
+    <Suspense fallback={
+        <Container>
+            <CircularProgress/>
+        </Container>
+    }>
+        <Switch>
+            <Route path="/" exact={true} component={Home}/>
+            <Route path="/examples/webshop" exact={true} component={WebShop}/>
+            <Route path="/examples/webshop/shop" exact={true} component={Shop}/>
+            <Route path="/examples/webshop/shop/product/:title/:id" component={ShopDetail}/>
+            <Route path="/examples/webshop/shop/shoppingcart" component={ShoppingCart}/>
+            <Route path="/examples/webshop/shop/customer-details" component={CheckoutSteps}/>
+            <Route path="/examples/csv-upload" component={CSVUpload}/>
+            <Route component={NoMatch}/>
+        </Switch>
+    </Suspense>;
+export default App;
