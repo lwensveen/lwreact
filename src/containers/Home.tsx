@@ -97,7 +97,7 @@ class Home extends React.PureComponent<Props> {
 
     public render(): React.ReactElement {
         const {classes} = this.props;
-        
+
         return (
             <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="start">
                 <Container>
