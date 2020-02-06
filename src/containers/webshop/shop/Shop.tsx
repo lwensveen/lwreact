@@ -1,6 +1,7 @@
 import {
     Box,
     Checkbox,
+    CircularProgress,
     Container,
     createStyles,
     ExpansionPanel,
@@ -50,6 +51,8 @@ interface State {
     checked: undefined;
     os: OperatingSystem[];
     phones: PhoneInterface[];
+    loaded: boolean;
+    error: any;
     filterBrands: string[];
     filterOS: string[];
     filterUrl: any;
@@ -65,6 +68,8 @@ class Shop extends React.PureComponent<Props, State> {
             checked: undefined,
             os: OPERATINGSYSTEM,
             phones: [],
+            loaded: false,
+            error: null,
             filterUrl: '',
             filterBrands: [],
             filterOS: []
@@ -75,7 +80,15 @@ class Shop extends React.PureComponent<Props, State> {
         fetch("http://localhost:5000/api/phones")
             .then((response) => response.json())
             .then((phones: PhoneInterface[]) => {
-                this.setState({phones: [...phones]});
+                this.setState({
+                    phones: [...phones],
+                    loaded: true,
+                });
+            }, (error) => {
+                this.setState({
+                    error: error,
+                    loaded: false
+                })
             });
     }
 
@@ -119,83 +132,99 @@ class Shop extends React.PureComponent<Props, State> {
                 return this.state.filterOS.indexOf(phone.os) !== -1 || this.state.filterBrands.indexOf(phone.brand) !== -1;
             }) : this.state.phones;
 
-        return (
-            <div className={classes.root}>
-                <Container>
-                    <Box alignSelf="center">
-                        <Toolbar className={classes.toolbar}>
-                            <Typography variant="h6" className="banner-header">
-                                Alle telefoons
-                            </Typography>
-                        </Toolbar>
-                    </Box>
-
-                    <Box display="flex" flexDirection="row">
-
-                        <Box className={classes.filters} display="flex" flexDirection="column">
+        if (this.state.error) {
+            return (
+                <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
+                     alignItems="center">
+                    <div>Error: {this.state.error.message}</div>
+                </Box>
+            )
+        } else if (!this.state.loaded) {
+            return (
+                <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
+                     alignItems="center">
+                    <CircularProgress/>
+                </Box>
+            )
+        } else {
+            return (
+                <div className={classes.root}>
+                    <Container>
+                        <Box alignSelf="center">
                             <Toolbar className={classes.toolbar}>
-                                <Typography variant="h6">Filters</Typography>
+                                <Typography variant="h6" className="banner-header">
+                                    Alle telefoons
+                                </Typography>
                             </Toolbar>
+                        </Box>
 
-                            <ExpansionPanel>
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                                    <Typography>Merken</Typography>
-                                </ExpansionPanelSummary>
-                                <ExpansionPanelDetails>
-                                    <FormGroup>
-                                        {this.state.brands.map((brand) =>
+                        <Box display="flex" flexDirection="row">
+
+                            <Box className={classes.filters} display="flex" flexDirection="column">
+                                <Toolbar className={classes.toolbar}>
+                                    <Typography variant="h6">Filters</Typography>
+                                </Toolbar>
+
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography>Merken</Typography>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        <FormGroup>
+                                            {this.state.brands.map((brand) =>
+                                                <FormControlLabel
+                                                    key={brand.id}
+                                                    /* tslint:disable-next-line:jsx-no-multiline-js */
+                                                    control={
+                                                        <Checkbox
+                                                            checked={this.state.checked}
+                                                            onChange={this.handleBrands(brand.name)}
+                                                            value={brand.name}
+                                                        />
+                                                    }
+                                                    label={brand.name}
+                                                />,
+                                            )}
+                                        </FormGroup>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography>Besturingssysteem</Typography>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        {this.state.os.map((os) =>
                                             <FormControlLabel
-                                                key={brand.id}
+                                                key={os.id}
                                                 /* tslint:disable-next-line:jsx-no-multiline-js */
                                                 control={
                                                     <Checkbox
                                                         checked={this.state.checked}
-                                                        onChange={this.handleBrands(brand.name)}
-                                                        value={brand.name}
+                                                        onChange={this.handleOS(os.name)}
+                                                        value={os.name}
                                                     />
                                                 }
-                                                label={brand.name}
+                                                label={os.name}
                                             />,
                                         )}
-                                    </FormGroup>
-                                </ExpansionPanelDetails>
-                            </ExpansionPanel>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                            </Box>
 
-                            <ExpansionPanel>
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                                    <Typography>Besturingssysteem</Typography>
-                                </ExpansionPanelSummary>
-                                <ExpansionPanelDetails>
-                                    {this.state.os.map((os) =>
-                                        <FormControlLabel
-                                            key={os.id}
-                                            /* tslint:disable-next-line:jsx-no-multiline-js */
-                                            control={
-                                                <Checkbox
-                                                    checked={this.state.checked}
-                                                    onChange={this.handleOS(os.name)}
-                                                    value={os.name}
-                                                />
-                                            }
-                                            label={os.name}
-                                        />,
-                                    )}
-                                </ExpansionPanelDetails>
-                            </ExpansionPanel>
-                        </Box>
-
-                        <Box display="flex" flex="1" flexDirection="column">
-                            <Toolbar className={classes.toolbar}>
-                                <Typography variant="h6">Telefoons</Typography>
-                            </Toolbar>
-                            <Box display="flex" flexDirection="row">
-                                <Phones phones={phones} fixUrl={this.fixUrl}/>
+                            <Box display="flex" flex="1" flexDirection="column">
+                                <Toolbar className={classes.toolbar}>
+                                    <Typography variant="h6">Telefoons</Typography>
+                                </Toolbar>
+                                <Box display="flex" flexDirection="row">
+                                    <Phones phones={phones} fixUrl={this.fixUrl}/>
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
-                </Container>
-            </div>
-        );
+                    </Container>
+                </div>
+            );
+        }
     }
 }
 
