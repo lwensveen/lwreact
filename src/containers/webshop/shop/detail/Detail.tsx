@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Box, CircularProgress, Container, Toolbar } from "@material-ui/core";
+import { Box, Button, Card, CardActions, CircularProgress, Container, Toolbar } from "@material-ui/core";
 import { Phone as PhoneInterface } from "../../../../mocks/phones";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import Steps from "../../../../components/webshop/steps/Steps";
 import Receipt from "../../../../components/webshop/receipt/Receipt";
@@ -11,6 +11,14 @@ import Colors from "../../../../components/webshop/colors/Colors";
 const useStyles = makeStyles({
     root: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    },
+    card: {
+        marginTop: '20px',
+    },
+    actions: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
     },
     toolbar: {
         backgroundColor: '#fff',
@@ -71,7 +79,14 @@ export default function Detail(): ReactElement {
                             </div>
 
                             <Colors/>
-                            <Receipt/>
+                            <Card className={classes.card}>
+                                <Receipt/>
+                                <CardActions className={classes.actions}>
+                                    <Link to="/examples/webshop/shop/shoppingcart">
+                                        <Button variant="contained" color="primary" disableElevation>Next</Button>
+                                    </Link>
+                                </CardActions>
+                            </Card>
                         </Box>
                     </Box>
                 </Container>

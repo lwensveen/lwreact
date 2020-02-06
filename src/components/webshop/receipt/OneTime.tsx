@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Button, CardActions, CardContent, CardHeader, Divider } from "@material-ui/core";
+import { CardContent, CardHeader, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
@@ -7,11 +7,6 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
-    },
-    actions: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
     }
 });
 
@@ -34,9 +29,6 @@ export default function OneTime(): ReactElement {
                     <span>US$ 30,69</span>
                 </div>
             </CardContent>
-            <CardActions className={classes.actions}>
-                <Button variant="contained" color="primary" disableElevation>Next</Button>
-            </CardActions>
         </>
     )
 }
