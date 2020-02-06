@@ -9,6 +9,14 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import ProjectCard from "../components/webshop/ProjectCard";
 import "./Home.css";
 
+// Added sleep to test Suspense
+// function sleep(delay: any) {
+//     const start = new Date().getTime();
+//     while (new Date().getTime() < start + delay);
+// }
+//
+// sleep(5000);
+
 const styles = createStyles({
     root: {
         backgroundColor: "#5199FF",
@@ -87,13 +95,9 @@ export interface ProjectCard {
 
 class Home extends React.PureComponent<Props> {
 
-    public render() {
+    public render(): React.ReactElement {
         const {classes} = this.props;
-
-        const cards = CONTENT.map((content) =>
-            <ProjectCard key={content.id} content={content}/>,
-        );
-
+        
         return (
             <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="start">
                 <Container>
@@ -103,7 +107,9 @@ class Home extends React.PureComponent<Props> {
                         </Typography>
                     </Toolbar>
                     <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-evenly">
-                        {cards}
+                        {CONTENT.map((content) =>
+                            <ProjectCard key={content.id} content={content}/>,
+                        )}
                     </Box>
                 </Container>
             </Box>
