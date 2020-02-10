@@ -18,7 +18,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 export default function Duration(props: Props): ReactElement {
     return (
-        <ExpansionPanel expanded={props.expanded === 'panel1'} onChange={() => props.handleChange('panel1')}>
+        <ExpansionPanel expanded={props.expanded === 'panel1'} onChange={props.handleChange('panel1')}>
             <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon/>}
                 aria-controls="panel1a-content"
@@ -43,11 +43,7 @@ export default function Duration(props: Props): ReactElement {
             </ExpansionPanelDetails>
             <Divider/>
             <ExpansionPanelActions>
-                <Button size="small" color="primary" onClick={() => {
-                    props.handleClick('panel2')
-                }}>
-                    Next
-                </Button>
+                <Button size="small" color="primary" onClick={props.handleClick('panel2')}>Next</Button>
             </ExpansionPanelActions>
         </ExpansionPanel>
     )

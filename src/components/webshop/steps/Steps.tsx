@@ -12,11 +12,11 @@ export default interface Props {
     classes: any;
     value: string;
 
-    handleChange(s: string): void;
+    handleChange(s: string): any;
 
-    handleClick(s: string): void;
+    handleClick(s: string): any;
 
-    handleRadioChange(event: ChangeEvent<HTMLInputElement>, s: string): void;
+    handleRadioChange(event: ChangeEvent<HTMLInputElement>, s: string): any;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -42,7 +42,7 @@ export default function Steps(props: any): ReactElement {
         setExpanded(newExpanded ? panel : false);
     };
 
-    const handleClick = (panel: string): void => {
+    const handleClick = (panel: string) => (): void => {
         setExpanded(panel);
     };
 

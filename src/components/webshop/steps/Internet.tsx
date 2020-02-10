@@ -1,12 +1,15 @@
-import React, { ReactElement } from "react";
+import React, {ReactElement} from "react";
 import Props from "./Steps";
 
 import {
     Button,
     Divider,
-    ExpansionPanel, ExpansionPanelActions,
+    ExpansionPanel,
+    ExpansionPanelActions,
     ExpansionPanelDetails,
-    ExpansionPanelSummary, FormControlLabel, Radio,
+    ExpansionPanelSummary,
+    FormControlLabel,
+    Radio,
     RadioGroup,
     Typography
 } from "@material-ui/core";
@@ -15,7 +18,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 export default function Internet(props: Props): ReactElement {
     return (
-        <ExpansionPanel expanded={props.expanded === 'panel3'} onChange={() => props.handleChange('panel3')}>
+        <ExpansionPanel expanded={props.expanded === 'panel3'} onChange={props.handleChange('panel3')}>
             <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon/>}
                 aria-controls="panel3a-content"
@@ -24,7 +27,11 @@ export default function Internet(props: Props): ReactElement {
                 <Typography className={props.classes.heading}>Internet</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <RadioGroup aria-label="position" name="position" value={props.value} onChange={props.handleRadioChange} row>
+                <RadioGroup aria-label="position"
+                            name="position"
+                            value={props.value}
+                            onChange={props.handleRadioChange}
+                            row>
                     <FormControlLabel
                         value="1 year"
                         control={<Radio color="primary"/>}
@@ -39,9 +46,7 @@ export default function Internet(props: Props): ReactElement {
             </ExpansionPanelDetails>
             <Divider/>
             <ExpansionPanelActions>
-                <Button size="small" onClick={() => {
-                    props.handleClick('panel2')
-                }}>Previous</Button>
+                <Button size="small" onClick={props.handleClick('panel2')}>Previous</Button>
             </ExpansionPanelActions>
         </ExpansionPanel>
     )
