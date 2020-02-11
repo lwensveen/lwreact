@@ -1,4 +1,4 @@
-import { Container } from "@material-ui/core";
+import {Button, Container} from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
@@ -12,12 +12,19 @@ import WorkIcon from "@material-ui/icons/Work";
 import React, { ReactElement } from "react";
 import MediaCard from "../../components/webshop/MediaCard";
 import "./Webshop.scss";
+import {Link} from "react-router-dom";
 
 export default function WebShop(): ReactElement {
     return (
         <>
             <Box className="banner">
                 <img className="img-responsive" src="http://localhost:5000/images/webshop/banner.jpg" alt="Banner"/>
+            </Box>
+
+            <Box className="buttons">
+                <Link to="/examples/webshop/shop">
+                    <Button variant="contained" color="secondary">Telefoons</Button>
+                </Link>
             </Box>
 
             <Box className="content">
