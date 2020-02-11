@@ -47,6 +47,7 @@ export default function Steps(props: any): ReactElement {
     };
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        console.log(value);
         setValue((event.target as HTMLInputElement).value);
     };
 

@@ -6,9 +6,9 @@ import { CircularProgress, Container } from "@material-ui/core";
 const Home = lazy(() => import("./containers/Home"));
 const WebShop = lazy(() => import("./containers/webshop/WebShop"));
 const Shop = lazy(() => import("./containers/webshop/shop/Shop"));
-const ShopDetail = lazy(() => import("./containers/webshop/shop/detail/Detail"));
-const ShoppingCart = lazy(() => import("./containers/webshop/shop/shoppingcart/ShoppingCart"));
-const CheckoutSteps = lazy(() => import("./containers/webshop/shop/checkout-steps/CheckoutSteps"));
+const ShopDetail = lazy(() => import("./containers/webshop/shop/Detail"));
+const ShoppingCart = lazy(() => import("./containers/webshop/shop/ShoppingCart"));
+const CheckoutSteps = lazy(() => import("./containers/webshop/shop/CheckoutSteps"));
 const CSVUpload = lazy(() => import("./containers/csv-upload/CSVUpload"));
 const NoMatch = lazy(() => import("./components/404"));
 

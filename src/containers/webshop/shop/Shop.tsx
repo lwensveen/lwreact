@@ -1,29 +1,15 @@
-import {
-    Box,
-    Checkbox,
-    CircularProgress,
-    Container,
-    createStyles,
-    ExpansionPanel,
-    ExpansionPanelDetails,
-    ExpansionPanelSummary,
-    FormControlLabel,
-    FormGroup,
-    Toolbar,
-    Typography,
-    WithStyles,
-} from "@material-ui/core";
+import {Box, CircularProgress, Container, createStyles, Toolbar, Typography, WithStyles,} from "@material-ui/core";
 
 import withStyles from "@material-ui/core/styles/withStyles";
+import React, {ReactElement} from "react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import React, { ReactElement } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import {Brands, BRANDS} from "../../../mocks/brands";
+import {OperatingSystem, OPERATINGSYSTEM} from "../../../mocks/operating-system";
+import {Phone as PhoneInterface} from "../../../mocks/phones";
 
+import Filters from "../../../components/webshop/Filters";
 import Phones from "../../../components/webshop/phones/Phones";
-import { Brands, BRANDS } from "../../../mocks/brands";
-import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
-import { Phone as PhoneInterface } from "../../../mocks/phones";
 
 const styles = createStyles({
     root: {
@@ -159,67 +145,12 @@ class Shop extends React.PureComponent<Props, State> {
                         </Box>
 
                         <Box display="flex" flexDirection="row">
+                            <Filters brands={this.state.brands}
+                                     os={this.state.os}
+                                     handleBrands={this.handleBrands}
+                                     handleOS={this.handleOS}/>
 
-                            <Box className={classes.filters} display="flex" flexDirection="column">
-                                <Toolbar className={classes.toolbar}>
-                                    <Typography variant="h6">Filters</Typography>
-                                </Toolbar>
-
-                                <ExpansionPanel>
-                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography>Merken</Typography>
-                                    </ExpansionPanelSummary>
-                                    <ExpansionPanelDetails>
-                                        <FormGroup>
-                                            {this.state.brands.map((brand) =>
-                                                <FormControlLabel
-                                                    key={brand.id}
-                                                    /* tslint:disable-next-line:jsx-no-multiline-js */
-                                                    control={
-                                                        <Checkbox
-                                                            checked={this.state.checked}
-                                                            onChange={this.handleBrands(brand.name)}
-                                                            value={brand.name}
-                                                        />
-                                                    }
-                                                    label={brand.name}
-                                                />,
-                                            )}
-                                        </FormGroup>
-                                    </ExpansionPanelDetails>
-                                </ExpansionPanel>
-
-                                <ExpansionPanel>
-                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography>Besturingssysteem</Typography>
-                                    </ExpansionPanelSummary>
-                                    <ExpansionPanelDetails>
-                                        {this.state.os.map((os) =>
-                                            <FormControlLabel
-                                                key={os.id}
-                                                /* tslint:disable-next-line:jsx-no-multiline-js */
-                                                control={
-                                                    <Checkbox
-                                                        checked={this.state.checked}
-                                                        onChange={this.handleOS(os.name)}
-                                                        value={os.name}
-                                                    />
-                                                }
-                                                label={os.name}
-                                            />,
-                                        )}
-                                    </ExpansionPanelDetails>
-                                </ExpansionPanel>
-                            </Box>
-
-                            <Box display="flex" flex="1" flexDirection="column">
-                                <Toolbar className={classes.toolbar}>
-                                    <Typography variant="h6">Telefoons</Typography>
-                                </Toolbar>
-                                <Box display="flex" flexDirection="row">
-                                    <Phones phones={phones} fixUrl={this.fixUrl}/>
-                                </Box>
-                            </Box>
+                            <Phones phones={phones} fixUrl={this.fixUrl}/>
                         </Box>
                     </Container>
                 </div>

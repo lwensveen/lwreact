@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Box, Button, Card, CardActions, CircularProgress, Container, Toolbar } from "@material-ui/core";
-import { Phone as PhoneInterface } from "../../../../mocks/phones";
+import { Phone as PhoneInterface } from "../../../mocks/phones";
 import { Link, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
-import Steps from "../../../../components/webshop/steps/Steps";
-import Receipt from "../../../../components/webshop/receipt/Receipt";
-import Colors from "../../../../components/webshop/colors/Colors";
+import Steps from "../../../components/webshop/steps/Steps";
+import Receipt from "../../../components/webshop/receipt/Receipt";
+import Colors from "../../../components/webshop/colors/Colors";
 
 
 const useStyles = makeStyles({

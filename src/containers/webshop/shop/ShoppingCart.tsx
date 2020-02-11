@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider } from "@material-ui/core";
 
-import Receipt from "../../../../components/webshop/receipt/Receipt";
+import Receipt from "../../../components/webshop/receipt/Receipt";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({

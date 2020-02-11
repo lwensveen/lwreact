@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Props } from "./CheckoutSteps";
+import { Props } from "../../../containers/webshop/shop/CheckoutSteps";
 
 export default function CustomerDetails(props: Props): ReactElement {
     return (

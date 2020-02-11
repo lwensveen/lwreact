@@ -2,9 +2,9 @@ import React from "react";
 
 import { Box, Container, createStyles, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import CustomerDetails from "./CustomerDetails";
-import Delivery from "./Delivery";
-import Confirm from "./Confirm";
+import CustomerDetails from "../../../components/webshop/checkout-steps/CustomerDetails";
+import Delivery from "../../../components/webshop/checkout-steps/Delivery";
+import Confirm from "../../../components/webshop/checkout-steps/Confirm";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

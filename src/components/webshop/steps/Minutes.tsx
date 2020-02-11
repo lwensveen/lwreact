@@ -27,17 +27,23 @@ export default function Minutes(props: Props): ReactElement {
                 <Typography className={props.classes.heading}>Minutes</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <RadioGroup aria-label="position" name="position" value={props.value} onChange={props.handleRadioChange}
-                            row>
+                <RadioGroup aria-label="position"
+                            name="position"
+                            value={props.value}
+                            onChange={props.handleRadioChange}
+                            row
+                >
                     <FormControlLabel
-                        value="1 year"
+                        value="120 minutes"
+                        name="minutes"
                         control={<Radio color="primary"/>}
-                        label="1 year"
+                        label="120 minutes"
                     />
                     <FormControlLabel
-                        value="2 years"
+                        value="Unlimited"
+                        name="minutes"
                         control={<Radio color="primary"/>}
-                        label="2 years"
+                        label="Unlimited"
                     />
                 </RadioGroup>
             </ExpansionPanelDetails>

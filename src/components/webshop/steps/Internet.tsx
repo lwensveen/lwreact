@@ -31,16 +31,18 @@ export default function Internet(props: Props): ReactElement {
                             name="position"
                             value={props.value}
                             onChange={props.handleRadioChange}
-                            row>
+                >
                     <FormControlLabel
-                        value="1 year"
+                        value="1 GB + 120 minutes 14.00"
+                        name="internet"
                         control={<Radio color="primary"/>}
-                        label="1 year"
+                        label="1 GB + 120 minutes 14.00"
                     />
                     <FormControlLabel
-                        value="2 years"
+                        value="5 GB + 120 minutes 16.00"
+                        name="internet"
                         control={<Radio color="primary"/>}
-                        label="2 years"
+                        label="5 GB + 120 minutes 16.00"
                     />
                 </RadioGroup>
             </ExpansionPanelDetails>
