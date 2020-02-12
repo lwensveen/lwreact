@@ -27,8 +27,8 @@ export default function Internet(props: Props): ReactElement {
                 <Typography className={props.classes.heading}>Internet</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <RadioGroup aria-label="position"
-                            name="position"
+                <RadioGroup aria-label="internet"
+                            name="internet"
                             value={props.value}
                             onChange={props.handleRadioChange}
                 >

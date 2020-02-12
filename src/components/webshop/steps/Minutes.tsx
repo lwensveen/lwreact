@@ -27,8 +27,8 @@ export default function Minutes(props: Props): ReactElement {
                 <Typography className={props.classes.heading}>Minutes</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <RadioGroup aria-label="position"
-                            name="position"
+                <RadioGroup aria-label="minutes"
+                            name="minutes"
                             value={props.value}
                             onChange={props.handleRadioChange}
                             row

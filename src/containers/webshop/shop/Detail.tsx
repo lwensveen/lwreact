@@ -44,6 +44,8 @@ export default function Detail(): ReactElement {
             });
     }, [id, title]);
 
+
+
     if (error) {
         return (
             <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"

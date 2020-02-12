@@ -1,8 +1,8 @@
-import React, { ChangeEvent, ReactElement } from "react";
+import React, {ChangeEvent, ReactElement, useState} from "react";
 
-import { createStyles, Theme } from "@material-ui/core";
+import {createStyles, Theme} from "@material-ui/core";
 
-import { makeStyles } from "@material-ui/styles";
+import {makeStyles} from "@material-ui/styles";
 import Duration from "./Duration";
 import Minutes from "./Minutes";
 import Internet from "./Internet";
@@ -10,7 +10,7 @@ import Internet from "./Internet";
 export default interface Props {
     expanded: string | boolean;
     classes: any;
-    value: string;
+    value: any;
 
     handleChange(s: string): any;
 
@@ -32,11 +32,16 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function Steps(props: any): ReactElement {
+export default function Steps(): ReactElement {
     const classes = useStyles();
 
-    const [value, setValue] = React.useState('1 year');
-    const [expanded, setExpanded] = React.useState<string | false>('panel1');
+    const [form, setForm] = useState({
+        duration: '1 year',
+        minutes: '120 minutes',
+        internet: '1 GB + 120 minutes 14.00'
+    } as { [name: string]: string });
+
+    const [expanded, setExpanded] = useState<string | false>('panel1');
 
     const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean): void => {
         setExpanded(newExpanded ? panel : false);
@@ -47,29 +52,28 @@ export default function Steps(props: any): ReactElement {
     };
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        console.log(value);
-        setValue((event.target as HTMLInputElement).value);
+        setForm({...form, [event.target.name]: (event.target as HTMLInputElement).value});
     };
 
     return (
         <div className={classes.root}>
             <Duration classes={classes}
                       expanded={expanded}
-                      value={value}
+                      value={form.duration}
                       handleChange={handleChange}
                       handleClick={handleClick}
                       handleRadioChange={handleRadioChange}
             />
             <Minutes classes={classes}
                      expanded={expanded}
-                     value={value}
+                     value={form.minutes}
                      handleChange={handleChange}
                      handleClick={handleClick}
                      handleRadioChange={handleRadioChange}
             />
             <Internet classes={classes}
                       expanded={expanded}
-                      value={value}
+                      value={form.internet}
                       handleChange={handleChange}
                       handleClick={handleClick}
                       handleRadioChange={handleRadioChange}

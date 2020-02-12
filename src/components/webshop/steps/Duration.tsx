@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, {ReactElement} from "react";
 import Props from "./Steps";
 
 import {
@@ -27,8 +27,12 @@ export default function Duration(props: Props): ReactElement {
                 <Typography className={props.classes.heading}>Contract duration</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <RadioGroup aria-label="position" name="position" value={props.value} onChange={props.handleRadioChange}
-                            row>
+                <RadioGroup aria-label="duration"
+                            name="duration"
+                            value={props.value}
+                            onChange={props.handleRadioChange}
+                            row
+                >
                     <FormControlLabel
                         value="1 year"
                         control={<Radio color="primary"/>}
