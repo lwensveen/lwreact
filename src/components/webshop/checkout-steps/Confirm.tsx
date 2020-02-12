@@ -1,7 +1,7 @@
-import React, { ReactElement } from "react";
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from "@material-ui/core";
+import React, {ReactElement} from "react";
+import {ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, TextField, Typography} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Props } from "../../../containers/webshop/shop/CheckoutSteps";
+import {Props} from "../../../containers/webshop/shop/CheckoutSteps";
 
 export default function Confirm(props: Props): ReactElement {
     return (
@@ -15,10 +15,7 @@ export default function Confirm(props: Props): ReactElement {
                 <Typography className={props.classes.heading}>Personal data</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <Typography>
-                    Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
-                    vitae egestas augue. Duis vel est augue.
-                </Typography>
+                <TextField id="standard-basic" label="Date"/>
             </ExpansionPanelDetails>
         </ExpansionPanel>
     )

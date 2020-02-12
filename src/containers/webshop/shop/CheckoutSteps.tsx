@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: theme.typography.pxToRem(15),
             color: theme.palette.text.secondary,
         },
+        details: {
+            display: 'block'
+        }
     }),
 );
 
@@ -36,7 +39,7 @@ export interface Props {
 
 export default function CheckoutSteps(): React.ReactElement {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState<string | false>(false);
+    const [expanded, setExpanded] = React.useState<string | false>('panel2');
 
     const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean): void => {
         setExpanded(isExpanded ? panel : false);
