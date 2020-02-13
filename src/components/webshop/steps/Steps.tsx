@@ -1,8 +1,8 @@
-import React, {ChangeEvent, ReactElement, useState} from "react";
+import React, { ChangeEvent, ReactElement, useState } from "react";
 
-import {createStyles, Theme} from "@material-ui/core";
+import { createStyles, Theme } from "@material-ui/core";
 
-import {makeStyles} from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import Duration from "./Duration";
 import Minutes from "./Minutes";
 import Internet from "./Internet";

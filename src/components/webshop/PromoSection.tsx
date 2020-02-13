@@ -1,8 +1,8 @@
-import React, {ReactElement} from "react";
+import React, { ReactElement } from "react";
 import Box from "@material-ui/core/Box";
-import {Container} from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import MediaCard from "./MediaCard";
-import {makeStyles} from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
     promoSection: {

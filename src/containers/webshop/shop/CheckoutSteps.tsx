@@ -1,7 +1,7 @@
-import React, {ChangeEvent, ReactElement, useState} from "react";
+import React, { ChangeEvent, ReactElement, useState } from "react";
 
-import {Box, Container, createStyles, Theme} from "@material-ui/core";
-import {makeStyles} from "@material-ui/styles";
+import { Box, Container, createStyles, Theme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import CustomerDetails from "../../../components/webshop/checkout-steps/CustomerDetails";
 import Delivery from "../../../components/webshop/checkout-steps/Delivery";
 import Confirm from "../../../components/webshop/checkout-steps/Confirm";

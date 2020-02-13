@@ -1,6 +1,6 @@
-import React, {ReactElement} from "react";
+import React, { ReactElement } from "react";
 import Box from "@material-ui/core/Box";
-import {makeStyles} from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
     banner: {

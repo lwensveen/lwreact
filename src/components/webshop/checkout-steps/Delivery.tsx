@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {Props} from "../../../containers/webshop/shop/CheckoutSteps";
+import { Props } from "../../../containers/webshop/shop/CheckoutSteps";
 
 export default function Delivery(props: Props): React.ReactElement {
     return (

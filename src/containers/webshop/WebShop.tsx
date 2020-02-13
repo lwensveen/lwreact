@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, { ReactElement } from "react";
 import Banner from "../../components/webshop/Banner";
 import CtaButtons from "../../components/webshop/CtaButtons";
 import ContentArea from "../../components/webshop/ContentArea";

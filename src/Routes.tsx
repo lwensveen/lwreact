@@ -1,4 +1,4 @@
-import React, {lazy, ReactElement, Suspense} from 'react';
+import React, { lazy, ReactElement, Suspense } from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import { CircularProgress, Container } from "@material-ui/core";

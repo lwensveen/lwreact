@@ -2,8 +2,8 @@ import React from "react";
 import { Phone as PhoneInterface } from "../../../mocks/phones";
 import "./Phones.scss";
 import Phone from "./phone/Phone";
-import {Box, Toolbar, Typography} from "@material-ui/core";
-import {makeStyles} from "@material-ui/styles";
+import { Box, Toolbar, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
 interface Props {
     phones: PhoneInterface[];

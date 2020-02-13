@@ -1,12 +1,12 @@
-import {Box, CircularProgress, Container, createStyles, Toolbar, Typography, WithStyles,} from "@material-ui/core";
+import { Box, CircularProgress, Container, createStyles, Toolbar, Typography, WithStyles, } from "@material-ui/core";
 
 import withStyles from "@material-ui/core/styles/withStyles";
-import React, {ReactElement} from "react";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import React, { ReactElement } from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
-import {Brands, BRANDS} from "../../../mocks/brands";
-import {OperatingSystem, OPERATINGSYSTEM} from "../../../mocks/operating-system";
-import {Phone as PhoneInterface} from "../../../mocks/phones";
+import { Brands, BRANDS } from "../../../mocks/brands";
+import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
+import { Phone as PhoneInterface } from "../../../mocks/phones";
 
 import Filters from "../../../components/webshop/Filters";
 import Phones from "../../../components/webshop/phones/Phones";

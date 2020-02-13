@@ -1,6 +1,6 @@
-import React, {ReactElement} from "react";
-import {CardContent, CardHeader, Divider} from "@material-ui/core";
-import {makeStyles} from "@material-ui/styles";
+import React, { ReactElement } from "react";
+import { CardContent, CardHeader, Divider } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
     root: {

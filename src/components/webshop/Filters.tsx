@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, { ReactElement } from "react";
 import {
     Box,
     Checkbox,
@@ -12,8 +12,8 @@ import {
 } from "@material-ui/core";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {makeStyles} from "@material-ui/styles";
-import {Brands} from "../../mocks/brands";
+import { makeStyles } from "@material-ui/styles";
+import { Brands } from "../../mocks/brands";
 
 const useStyles = makeStyles({
     toolbar: {

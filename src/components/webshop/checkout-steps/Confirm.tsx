@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, { ReactElement } from "react";
 
 import {
     Button,
@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {Props} from "../../../containers/webshop/shop/CheckoutSteps";
+import { Props } from "../../../containers/webshop/shop/CheckoutSteps";
 
 export default function Confirm(props: Props): ReactElement {
     /* TODO Implement DatePicker */
