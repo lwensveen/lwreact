@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, {lazy, ReactElement, Suspense} from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import { CircularProgress, Container } from "@material-ui/core";
@@ -12,7 +12,7 @@ const CheckoutSteps = lazy(() => import("./containers/webshop/shop/CheckoutSteps
 const CSVUpload = lazy(() => import("./containers/csv-upload/CSVUpload"));
 const NoMatch = lazy(() => import("./components/404"));
 
-const App = (): React.ReactElement =>
+const App = (): ReactElement =>
     <Suspense fallback={
         <Container>
             <CircularProgress/>
