@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {ReactElement} from "react";
+import {Link} from "react-router-dom";
 
-import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider } from "@material-ui/core";
+import {Box, Button, Card, CardActions, CardContent, CardHeader, Divider} from "@material-ui/core";
 
 import Receipt from "../../../components/webshop/receipt/Receipt";
-import { makeStyles } from "@material-ui/styles";
+import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles({
     root: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Shopppingcart(): React.ReactElement {
+export default function Shopppingcart(): ReactElement {
     const classes = useStyles();
 
     return (
