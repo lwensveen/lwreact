@@ -1,11 +1,11 @@
-import { createStyles, WithStyles } from "@material-ui/core";
+import {createStyles, WithStyles} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import React, {ReactElement} from "react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import ProjectCard from "../components/webshop/ProjectCard";
 import "./Home.css";
 
@@ -94,8 +94,7 @@ export interface ProjectCard {
 }
 
 class Home extends React.PureComponent<Props> {
-
-    public render(): React.ReactElement {
+    public render(): ReactElement {
         const {classes} = this.props;
 
         return (
