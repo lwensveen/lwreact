@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Steps(): ReactElement {
     const classes = useStyles();
 
+    /* TODO pull receipt and steps states up or use a store */
+
     const [form, setForm] = useState({
         duration: '1 year',
         minutes: '120 minutes',

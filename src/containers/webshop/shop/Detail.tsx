@@ -32,6 +32,8 @@ export default function Detail(): ReactElement {
     const [error, setError] = useState();
     const {id, title} = useParams();
 
+    /* TODO pull receipt and steps states up here or use a store */
+
     useEffect(() => {
         fetch(`http://localhost:5000/api/phones/${title}/${id}`)
             .then((response) => response.json())
@@ -43,8 +45,6 @@ export default function Detail(): ReactElement {
                 setLoaded(false)
             });
     }, [id, title]);
-
-
 
     if (error) {
         return (
