@@ -1,5 +1,5 @@
 import { blue, indigo } from "@material-ui/core/colors";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React, { ReactElement } from "react";
 
 import "./App.css";
@@ -27,11 +27,11 @@ class App extends React.PureComponent {
     public render(): ReactElement {
         return (
             <React.Fragment>
-                <Header/>
-                <MuiThemeProvider theme={theme}>
+                <ThemeProvider theme={theme}>
+                    <Header/>
                     <Routes/>
-                </MuiThemeProvider>
-                <Footer/>
+                    <Footer/>
+                </ThemeProvider>
             </React.Fragment>
         );
     }
