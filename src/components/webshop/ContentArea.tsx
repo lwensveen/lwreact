@@ -1,11 +1,11 @@
 import React, {ReactElement} from "react";
-import {Container} from "@material-ui/core";
+import {Container,} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import List from "@material-ui/core/List";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import Avatar from "@material-ui/core/Avatar";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ImageIcon from "@material-ui/icons/Image";
 import ListItemText from "@material-ui/core/ListItemText";
 import WorkIcon from "@material-ui/icons/Work";
@@ -15,28 +15,28 @@ export default function ContentArea(): ReactElement {
     return (
         <Box className="content">
             <Container>
-                <Box display="flex" flexDirection="row" justifyContent="center">
+                <Box display="flex" flexDirection="row" justifyContent="space-evenly">
                     <List>
                         <ListSubheader disableSticky={true}>
                             BESTELLEN
                         </ListSubheader>
                         <Divider/>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <ImageIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Photos" secondary="Jan 9, 2014"/>
                         </ListItem>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <WorkIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Work" secondary="Jan 7, 2014"/>
                         </ListItem>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <BeachAccessIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Vacation" secondary="July 20, 2014"/>
                         </ListItem>
                     </List>
@@ -46,21 +46,21 @@ export default function ContentArea(): ReactElement {
                         </ListSubheader>
                         <Divider/>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <ImageIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Photos" secondary="Jan 9, 2014"/>
                         </ListItem>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <WorkIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Work" secondary="Jan 7, 2014"/>
                         </ListItem>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <BeachAccessIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Vacation" secondary="July 20, 2014"/>
                         </ListItem>
                     </List>
@@ -70,21 +70,21 @@ export default function ContentArea(): ReactElement {
                         </ListSubheader>
                         <Divider/>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <ImageIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Photos" secondary="Jan 9, 2014"/>
                         </ListItem>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <WorkIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Work" secondary="Jan 7, 2014"/>
                         </ListItem>
                         <ListItem>
-                            <Avatar>
+                            <ListItemAvatar>
                                 <BeachAccessIcon/>
-                            </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary="Vacation" secondary="July 20, 2014"/>
                         </ListItem>
                     </List>
