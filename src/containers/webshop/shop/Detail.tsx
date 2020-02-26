@@ -29,7 +29,7 @@ export default function Detail(): ReactElement {
     const classes = useStyles();
     const [phone, setPhone] = useState({} as PhoneInterface);
     const [isLoaded, setLoaded] = useState(false);
-    const [error, setError] = useState();
+    const [error, setError] = useState({} as Error);
     const {id, title} = useParams();
 
     /* TODO pull receipt and steps states up here or use a store */
