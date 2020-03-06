@@ -29,7 +29,7 @@ export default function Detail(): ReactElement {
     const classes = useStyles();
     const [phone, setPhone] = useState({} as PhoneInterface);
     const [isLoaded, setLoaded] = useState(false);
-    const [error, setError] = useState({} as Error);
+    const [error, setError] = useState('');
     const {id, title} = useParams();
 
     /* TODO pull receipt and steps states up here or use a store */
@@ -50,7 +50,7 @@ export default function Detail(): ReactElement {
         return (
             <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
                  alignItems="center">
-                <div>Error: {error.message}</div>
+                <div>Error: {error}</div>
             </Box>
         );
     } else if (!isLoaded) {

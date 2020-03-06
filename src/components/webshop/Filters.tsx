@@ -13,7 +13,7 @@ import {
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/styles";
-import { Brands } from "../../mocks/brands";
+import { Brand } from "../../mocks/brands";
 
 const useStyles = makeStyles({
     toolbar: {
@@ -40,7 +40,7 @@ export default function Filters(props: any): ReactElement {
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <FormGroup>
-                        {props.brands.map((brand: Brands) =>
+                        {props.brands.map((brand: Brand) =>
                             <FormControlLabel
                                 key={brand.id}
                                 /* tslint:disable-next-line:jsx-no-multiline-js */

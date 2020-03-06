@@ -1,17 +1,15 @@
-import { Box, CircularProgress, Container, createStyles, Toolbar, Typography, WithStyles, } from "@material-ui/core";
+import { Box, CircularProgress, Container, Toolbar, Typography, } from "@material-ui/core";
+import React, { ReactElement, useEffect, useState } from "react";
 
-import withStyles from "@material-ui/core/styles/withStyles";
-import React, { ReactElement } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
-
-import { Brands, BRANDS } from "../../../mocks/brands";
-import { OperatingSystem, OPERATINGSYSTEM } from "../../../mocks/operating-system";
-import { Phone as PhoneInterface } from "../../../mocks/phones";
+import { BRANDS } from "../../../mocks/brands";
+import { OPERATINGSYSTEM } from "../../../mocks/operating-system";
+import { Phone, Phone as PhoneInterface } from "../../../mocks/phones";
 
 import Filters from "../../../components/webshop/Filters";
 import Phones from "../../../components/webshop/phones/Phones";
+import { makeStyles } from "@material-ui/styles";
 
-const styles = createStyles({
+const useStyles = makeStyles({
     root: {
         backgroundColor: "#6d9cbe",
     },
@@ -24,139 +22,90 @@ const styles = createStyles({
     }
 });
 
-interface Props extends WithStyles<typeof styles>, RouteComponentProps<any> {
-    classes: {
-        root: string;
-        filters: string;
-        toolbar: string;
-    };
-}
+export default function Shop(): ReactElement {
+    const classes = useStyles();
 
-interface State {
-    brands: Brands[];
-    checked: undefined;
-    os: OperatingSystem[];
-    phones: PhoneInterface[];
-    loaded: boolean;
-    error: any;
-    filterBrands: string[];
-    filterOS: string[];
-    filterUrl: any;
-}
+    const [phones, setPhones] = useState([] as Phone[]);
+    const [brands] = useState(BRANDS);
+    const [filterBrands, setFilterBrands] = useState([] as any);
+    const [os] = useState(OPERATINGSYSTEM);
+    const [filterOS, setfilterOS] = useState([] as any);
+    const [isLoaded, setLoaded] = useState(false);
+    const [error, setError] = useState('');
 
-class Shop extends React.PureComponent<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-
-        this.state = {
-            brands: BRANDS,
-            checked: undefined,
-            os: OPERATINGSYSTEM,
-            phones: [],
-            loaded: false,
-            error: null,
-            filterUrl: '',
-            filterBrands: [],
-            filterOS: []
-        };
-    }
-
-    public componentDidMount(): void {
+    useEffect(() => {
         fetch("http://localhost:5000/api/phones")
             .then((response) => response.json())
             .then((phones: PhoneInterface[]) => {
-                this.setState({
-                    phones: [...phones],
-                    loaded: true,
-                });
+                setPhones([...phones]);
+                setLoaded(true);
             }, (error) => {
-                this.setState({
-                    error: error,
-                    loaded: false
-                })
+                setError(error);
+                setLoaded(false);
             });
-    }
+    }, []);
 
-    public handleBrands = (name: string) => (evt: any) => {
-
+    const handleBrands = (name: string) => (evt: any) => {
         if (evt.target.checked) {
-            this.setState({
-                filterBrands: [...this.state.filterBrands, name]
-            });
-            return
+            return setFilterBrands([...filterBrands, name]);
         }
-
-        this.setState({
-            filterBrands: []
-        });
+        setFilterBrands([]);
     };
 
-    public fixUrl(url: string): string {
+    const handleOS = (name: string) => (evt: any) => {
+        if (evt.target.checked) {
+            return setfilterOS([...filterOS, name]);
+
+        }
+        setfilterOS([]);
+    };
+
+    const fixUrl = (url: string): string => {
         return url.replace(/\s/g, '');
-    }
-
-    public handleOS = (name: string) => (evt: any) => {
-
-        if (evt.target.checked) {
-            this.setState({
-                filterOS: [...this.state.filterOS, name]
-            });
-            return
-        }
-
-        this.setState({
-            filterOS: []
-        });
     };
 
-    public render(): ReactElement {
-        const {classes} = this.props;
+    const filtered = filterBrands.length || filterOS.length ?
+        phones.filter(phone => {
+            return filterOS.indexOf(phone.os) !== -1 || filterBrands.indexOf(phone.brand) !== -1;
+        }) : [...phones];
 
-        const phones = this.state.filterBrands.length || this.state.filterOS.length ?
-            this.state.phones.filter(phone => {
-                return this.state.filterOS.indexOf(phone.os) !== -1 || this.state.filterBrands.indexOf(phone.brand) !== -1;
-            }) : this.state.phones;
+    if (error) {
+        console.log('error', error);
+        return (
+            <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
+                 alignItems="center">
+                <div>Error: {error}</div>
+            </Box>
+        )
+    } else if (!isLoaded) {
+        return (
+            <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
+                 alignItems="center">
+                <CircularProgress/>
+            </Box>
+        )
+    } else {
+        return (
+            <div className={classes.root}>
+                <Container>
+                    <Box alignSelf="center">
+                        <Toolbar className={classes.toolbar}>
+                            <Typography variant="h6" className="banner-header">
+                                Alle telefoons
+                            </Typography>
+                        </Toolbar>
+                    </Box>
 
-        if (this.state.error) {
-            return (
-                <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
-                     alignItems="center">
-                    <div>Error: {this.state.error.message}</div>
-                </Box>
-            )
-        } else if (!this.state.loaded) {
-            return (
-                <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
-                     alignItems="center">
-                    <CircularProgress/>
-                </Box>
-            )
-        } else {
-            return (
-                <div className={classes.root}>
-                    <Container>
-                        <Box alignSelf="center">
-                            <Toolbar className={classes.toolbar}>
-                                <Typography variant="h6" className="banner-header">
-                                    Alle telefoons
-                                </Typography>
-                            </Toolbar>
-                        </Box>
+                    <Box display="flex" flexDirection="row">
+                        <Filters brands={brands}
+                                 os={os}
+                                 handleBrands={handleBrands}
+                                 handleOS={handleOS}/>
 
-                        <Box display="flex" flexDirection="row">
-                            <Filters brands={this.state.brands}
-                                     os={this.state.os}
-                                     handleBrands={this.handleBrands}
-                                     handleOS={this.handleOS}/>
-
-                            <Phones phones={phones} fixUrl={this.fixUrl}/>
-                        </Box>
-                    </Container>
-                </div>
-            );
-        }
+                        <Phones phones={filtered} fixUrl={fixUrl}/>
+                    </Box>
+                </Container>
+            </div>
+        );
     }
 }
-
-export default withRouter(withStyles(styles)(Shop));

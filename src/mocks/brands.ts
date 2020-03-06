@@ -1,9 +1,9 @@
-export interface Brands {
+export interface Brand {
     id: number;
     name: string;
 }
 
-export const BRANDS: Brands[] = [
+export const BRANDS: Brand[] = [
     {
         id: 1,
         name: "Apple",
