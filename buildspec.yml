@@ -7,5 +7,5 @@ phases:
 artifacts:
     files:
         - '**/*'
-    base-directory: 'build/lwreact*'
+    base-directory: 'build*'
     discard-paths: yes
