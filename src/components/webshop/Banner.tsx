@@ -13,7 +13,7 @@ export default function Banner(): ReactElement {
 
     return (
         <Box className={classes.banner}>
-            <img className="img-responsive" src="http://localhost:5000/images/webshop/banner.jpg" alt="Banner"/>
+            <img className="img-responsive" src={process.env.REACT_APP_BACKEND_URL + "/images/webshop/banner.jpg"}  alt="Banner"/>
         </Box>
     )
 }

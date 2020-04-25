@@ -35,7 +35,7 @@ export default function Detail(): ReactElement {
     /* TODO pull receipt and steps states up here or use a store */
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/phones/${title}/${id}`)
+        fetch(process.env.REACT_APP_BACKEND_URL + `/api/phones/${title}/${id}`)
             .then((response) => response.json())
             .then((getPhone: PhoneInterface) => {
                 setPhone({...getPhone});

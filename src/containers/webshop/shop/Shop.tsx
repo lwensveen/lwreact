@@ -31,10 +31,10 @@ export default function Shop(): ReactElement {
     const [os] = useState(OPERATINGSYSTEM);
     const [filterOS, setfilterOS] = useState([] as any);
     const [isLoaded, setLoaded] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState({} as Error);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/phones")
+        fetch(process.env.REACT_APP_BACKEND_URL + "/api/phones")
             .then((response) => response.json())
             .then((phones: PhoneInterface[]) => {
                 setPhones([...phones]);
@@ -70,11 +70,10 @@ export default function Shop(): ReactElement {
         }) : [...phones];
 
     if (error) {
-        console.log('error', error);
         return (
             <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center"
                  alignItems="center">
-                <div>Error: {error}</div>
+                <div>Error: {error.message}</div>
             </Box>
         )
     } else if (!isLoaded) {
