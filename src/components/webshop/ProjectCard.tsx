@@ -35,7 +35,7 @@ const styles = createStyles({
     },
     media: {
         transition: 'all 1s ease',
-        filter: 'brightness(100%) blur(2px)'
+        filter: 'brightness(80%) blur(2px)'
     },
 });
 
