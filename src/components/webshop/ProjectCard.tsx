@@ -6,28 +6,41 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { ReactElement } from "react";
 import { Content } from "../../containers/Home";
+import { createStyles } from "@material-ui/styles";
 
 interface Props {
     classes: any;
     content?: Content;
 }
 
-const styles = () => ({
+const styles = createStyles({
     actions: {
         display: "flex",
         justifyContent: "flex-end",
     },
     card: {
+        display: "flex",
+        flexDirection: "column",
         marginBottom: 20,
         marginTop: 20,
         width: 400,
+        "&:hover img": {
+            filter: 'brightness(50%) blur(1px)'
+        }
+    },
+    content: {
+        flex: 1,
+    },
+    media: {
+        transition: 'all 1s ease',
+        filter: 'brightness(100%) blur(2px)'
     },
 });
 
 class ProjectCard extends React.PureComponent<Props> {
-    public render() {
+    public render(): ReactElement {
         const classes = this.props.classes;
         const content = this.props.content;
 
@@ -38,14 +51,14 @@ class ProjectCard extends React.PureComponent<Props> {
                     subheader={content?.subtitle}
                 />
                 <CardMedia
+                    className={classes.media}
                     component="img"
-                    image="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    image={content?.img}
                     title={content?.title}
                 />
-                <CardContent>
+                <CardContent className={classes.content}>
                     <Typography component="p">
-                        This impressive paella is a perfect party dish and a fun meal to cook together with your
-                        guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                        {content?.content}
                     </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableSpacing={true}>

@@ -8,6 +8,7 @@ import React, { ReactElement } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import ProjectCard from "../components/webshop/ProjectCard";
 import "./Home.css";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 // Added sleep to test Suspense
 // function sleep(delay: any) {
@@ -38,6 +39,7 @@ export interface Content {
     id: number;
     title: string;
     subtitle: string;
+    img: string;
     url: string;
     avatar: string;
     bulletpoints: Bulletpoints[];
@@ -54,6 +56,7 @@ export const CONTENT: Content[] = [
         title: "Webshop",
         avatar: "/assets/javascript.svg",
         url: "examples/webshop",
+        img: "/assets/webshop.png",
         bulletpoints: [
             {
                 point: "Functional Programming",
@@ -65,7 +68,7 @@ export const CONTENT: Content[] = [
                 point: "Object composition > Classical inheritance",
             },
         ],
-        content: "Ik heb een ruime ervaring met Angular.",
+        content: "Voorbeeld Webshop",
         subtitle: "Example e-commerce site (Telecom)",
     },
     {
@@ -73,6 +76,7 @@ export const CONTENT: Content[] = [
         title: "CSV Upload",
         avatar: "/assets/javascript.svg",
         url: "examples/csv-upload",
+        img: "/assets/csv.png",
         bulletpoints: [
             {
                 point: "Functional Programming",
@@ -84,7 +88,7 @@ export const CONTENT: Content[] = [
                 point: "Object composition > Classical inheritance",
             },
         ],
-        content: "Ik heb een ruime ervaring met Angular.",
+        content: "Voorbeeld CSV Upload",
         subtitle: "Example CSV upload functionality",
     },
 ];
@@ -100,15 +104,21 @@ class Home extends React.PureComponent<Props> {
         return (
             <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="start">
                 <Container>
-                    <Toolbar className={classes.toolbar}>
-                        <Typography variant="h6">
-                            My React Projects
-                        </Typography>
-                    </Toolbar>
+                    <CSSTransition in={true} timeout={0} appear={true} classNames="item">
+                        <Toolbar className={classes.toolbar}>
+                            <Typography variant="h6">
+                                My React Projects
+                            </Typography>
+                        </Toolbar>
+                    </CSSTransition>
                     <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-evenly">
-                        {CONTENT.map((content) =>
-                            <ProjectCard key={content.id} content={content}/>,
-                        )}
+                        <TransitionGroup component={null} appear={true}>
+                            {CONTENT.map((content) =>
+                                <CSSTransition key={content.id} timeout={0} classNames="item">
+                                    <ProjectCard key={content.id} content={content}/>
+                                </CSSTransition>,
+                            )}
+                        </TransitionGroup>
                     </Box>
                 </Container>
             </Box>
